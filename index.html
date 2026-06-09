@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>QuestUp Mobile</title>
+  <style>
+    :root {
+      --bg-primary: #0d1117;
+      --bg-secondary: #161b22;
+      --bg-tertiary: #21262d;
+      --bg-card: #1c2128;
+      --text-primary: #e6edf3;
+      --text-secondary: #8b949e;
+      --text-muted: #484f58;
+      --accent: #58a6ff;
+      --accent-soft: rgba(88, 166, 255, 0.15);
+      --success: #238636;
+      --warning: #d29922;
+      --danger: #da3633;
+      --border: #30363d;
+      --ring-bg: #30363d;
+      --shadow: 0 4px 12px rgba(0,0,0,0.3);
+      --radius: 12px;
+      --radius-sm: 8px;
+      --radius-lg: 16px;
+    }
+
+    .light {
+      --bg-primary: #ffffff;
+      --bg-secondary: #f6f8fa;
+      --bg-tertiary: #eaeef2;
+      --bg-card: #ffffff;
+      --text-primary: #1f2328;
+      --text-secondary: #656d76;
+      --text-muted: #8c959f;
+      --border: #d0d7de;
+      --ring-bg: #eaeef2;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      width: 100%;
+      padding-bottom: 80px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      position: sticky;
+      top: 0;
+      background: var(--bg-primary);
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    .logo-icon {
+      font-size: 1.5rem;
+    }
+
+    .theme-toggle {
+      background: var(--bg-tertiary);
+      border: none;
+      color: var(--text-primary);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      margin: 16px;
+      border: 1px solid var(--border);
+    }
+
+    .card-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 10px 14px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--accent);
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      border: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0d1117;
+    }
+
+    .btn-danger {
+      background: var(--bg-tertiary);
+      color: var(--danger);
+      border: 1px solid var(--danger);
+    }
+
+    .btn:active {
+      opacity: 0.7;
+    }
+    .progress-section {
+      text-align: center;
+    }
+
+    .progress-ring-container {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      margin: 0 auto;
+    }
+
+    .progress-ring svg {
+      transform: rotate(-90deg);
+    }
+
+    .progress-ring-circle-bg {
+      fill: none;
+      stroke: var(--ring-bg);
+      stroke-width: 10;
+    }
+
+    .progress-ring-circle {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 10;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 0.5s ease;
+    }
+
+    .progress-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .progress-xp {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .progress-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .stat-card {
+      background: var(--bg-secondary);
+      border-radius: var(--radius);
+      padding: 14px;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .quests-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .quests-count {
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .quest-item {
+      background: var(--bg-secondary);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--border);
+    }
+
+    .quest-checkbox {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--success);
+    }
+
+    .quest-text {
+      font-size: 0.9rem;
+      flex: 1;
+    }
+
+    .quest-xp {
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Quiz Cards */
+    .quiz-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      margin: 16px;
+      border: 1px solid var(--border);
+    }
+
+    .quiz-topic {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .quiz-question {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .quiz-option {
+      background: var(--bg-secondary);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+
+    .quiz-option:hover {
+      border-color: var(--accent);
+    }
+
+    .quiz-option.selected {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .quiz-option.correct {
+      border-color: var(--success);
+      background: rgba(35, 134, 54, 0.15);
+    }
+
+    .quiz-option.wrong {
+      border-color: var(--danger);
+      background: rgba(218, 54, 51, 0.15);
+    }
+    .quiz-explanation {
+      background: var(--accent-soft);
+      border-radius: var(--radius);
+      padding: 14px;
+      margin-top: 16px;
+      font-size: 0.9rem;
+      border-left: 3px solid var(--accent);
+    }
+
+    .quiz-explanation-title {
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    /* Nav Bar */
+    .nav-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--bg-card);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-around;
+      padding: 8px 0;
+      z-index: 1000;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.7rem;
+      cursor: pointer;
+      padding: 4px 12px;
+      transition: color 0.2s;
+    }
+
+    .nav-item.active {
+      color: var(--accent);
+    }
+
+    .nav-icon {
+      font-size: 1.3rem;
+    }
+
+    /* Levels Page */
+    .level-item {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin: 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      border: 1px solid var(--border);
+    }
+
+    .level-number {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--bg-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .level-item.active .level-number {
+      background: var(--accent);
+      color: #0d1117;
+    }
+
+    .level-info {
+      flex: 1;
+    }
+
+    .level-name {
+      font-weight: 600;
+    }
+
+    .level-xp-needed {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* To-Do */
+    .todo-input-container {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .todo-input {
+      flex: 1;
+      padding: 10px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+    }
+
+    .todo-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg-card);
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .todo-item.done {
+      opacity: 0.5;
+      text-decoration: line-through;
+    }
+
+    .todo-delete {
+      margin-left: auto;
+      background: none;
+      border: none;
+      color: var(--danger);
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    /* Data Neo4j */
+    .neo4j-fields input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      font-size: 0.85rem;
+    }
+
+    .neo4j-status {
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      margin-top: 12px;
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    .neo4j-status.connected {
+      background: rgba(35, 134, 54, 0.15);
+      color: var(--success);
+    }
+
+    .neo4j-status.error {
+      background: rgba(218, 54, 51, 0.15);
+      color: var(--danger);
+    }
+
+    /* AI Coach */
+    .ai-chat {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      margin: 16px;
+      border: 1px solid var(--border);
+    }
+
+    .ai-messages {
+      min-height: 200px;
+      max-height: 300px;
+      overflow-y: auto;
+      margin-bottom: 12px;
+    }
+
+    .ai-message {
+      padding: 10px 14px;
+      border-radius: var(--radius);
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+    }
+
+    .ai-message.coach {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius) var(--radius) var(--radius) 0;
+    }
+
+    .ai-message.user {
+      background: var(--accent-soft);
+      border-radius: var(--radius) var(--radius) 0 var(--radius);
+      margin-left: 20%;
+    }
+
+    .ai-input-container {
+      display: flex;
+      gap: 8px;
+    }
+
+    .ai-input {
+      flex: 1;
+      padding: 10px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+    }
+
+    .ai-btn {
+      background: var(--accent);
+      color: #0d1117;
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 10px 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Toast */
+    #toast {
+      position: fixed;
+      top: 70px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-100px);
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      font-size: 0.9rem;
+      z-index: 2000;
+      opacity: 0;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    #toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* Screen visibility */
+    .screen {
+      display: none;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-muted);
+    }
+
+    .empty-state-icon {
+      font-size: 3rem;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body class="dark">
+  <div class="container">
+    <header>
+      <div class="logo">
+        <span class="logo-icon">🎮</span>
+        QuestUp
+      </div>
+      <button class="theme-toggle" id="themeToggle">🌙</button>
+    </header>
+
+    <!-- ACCUEIL -->
+    <div id="screen-home" class="screen active">
+      <div class="card">
+        <div class="card-title">Compte Joueur</div>
+        <div class="form-group">
+          <label>Nom</label>
+          <input type="text" id="playerName" placeholder="Ton prénom">
+        </div>
+        <div class="form-group">
+          <label>Classe</label>
+          <select id="playerClass">
+            <option value="">Sélectionner</option>
+            <option value="premiere-generale">Première générale</option>
+            <option value="premiere-techno">Première techno</option>
+            <option value="terminale-generale">Terminale générale</option>
+            <option value="terminale-techno">Terminale techno</option>
+            <option value="seconde">Seconde</option>
+          </select>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-primary" onclick="saveProfile()">Mettre à jour</button>
+          <button class="btn btn-danger" onclick="resetAll()">Reset global</button>
+        </div>
+      </div>
+
+      <div class="card progress-section">
+        <div class="card-title">Progression du jour</div>
+        <div class="progress-ring-container">
+          <svg width="140" height="140">
+            <circle class="progress-ring-circle-bg" cx="70" cy="70" r="55"/>
+            <circle class="progress-ring-circle" id="progressCircle" cx="70" cy="70" r="55"
+              stroke-dasharray="345.4" stroke-dashoffset="345.4"/>
+          </svg>
+          <div class="progress-text">
+            <div class="progress-xp" id="dailyXp">0</div>
+            <div class="progress-label">/ 500 XP</div>
+          </div>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-value" id="levelDisplay">1</div>
+            <div class="stat-label">Niveau</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value"><span id="streakDisplay">0</span> 🔥</div>
+            <div class="stat-label">Streak</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="totalXpDisplay">0</div>
+            <div class="stat-label">XP Total</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="todayXpDisplay">0</div>
+            <div class="stat-label">XP Aujourd'hui</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="quests-header">
+          <div class="card-title" style="margin-bottom: 0;">Quêtes du jour</div>
+          <div class="quests-count" id="questsCount">0/4</div>
+        </div>
+        <div id="questsList"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">IA Coach</div>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 12px;">
+          Pose-moi une question sur tes révisions, ta progression ou ton emploi du temps !
+        </p>
+        <div class="ai-chat">
+          <div class="ai-messages" id="aiMessages">
+            <div class="ai-message coach">Salut ! Je suis ton coach QuestUp. Comment je peux t'aider aujourd'hui ?</div>
+          </div>
+          <div class="ai-input-container">
+            <input type="text" class="ai-input" id="aiInput" placeholder="Demande quelque chose...">
+            <button class="ai-btn" onclick="sendAiMessage()">IA</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NIVEAUX -->
+    <div id="screen-levels" class="screen">
+      <div class="card">
+        <div class="card-title">Tes niveaux</div>
+        <div id="levelsList"></div>
+      </div>
+    </div>
+
+    <!-- QUIZ -->
+    <div id="screen-quiz" class="screen">
+      <div id="quizCard"></div>
+      <div id="quizEmpty" class="empty-state" style="display: none;">
+        <div class="empty-state-icon">🎯</div>
+        <h3>Quiz terminé pour aujourd'hui !</h3>
+        <p>Reviens demain pour de nouvelles questions.</p>
+      </div>
+    </div>
+
+    <!-- TO-DO -->
+    <div id="screen-todo" class="screen">
+      <div class="card">
+        <div class="card-title">To-Do du jour</div>
+        <div class="todo-input-container">
+          <input type="text" id="todoInput" class="todo-input" placeholder="Nouvelle tâche...">
+          <button class="btn btn-primary" onclick="addTodo()">+</button>
+        </div>
+        <div id="todoList"></div>
+      </div>
+    </div>
+
+    <!-- DONNÉES -->
+    <div id="screen-data" class="screen">
+      <div class="card">
+        <div class="card-title">Connexion Neo4j AuraDB</div>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 16px;">
+          Connecte ta base de données Neo4j pour sauvegarder ta progression.
+        </p>
+        <div class="neo4j-fields">
+          <input type="text" id="neo4jUri" placeholder="Neo4j URI (neo4j+s://...)" autocomplete="off">
+          <input type="text" id="neo4jUser" placeholder="Identifiant" autocomplete="off">
+          <input type="password" id="neo4jPass" placeholder="Mot de passe" autocomplete="off">
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-primary" onclick="testNeo4jConnection()">↑ Sync vers Neo4j</button>
+          <button class="btn btn-primary" onclick="loadFromNeo4j()">↓ Charger</button>
+        </div>
+        <div id="neo4jStatus" class="neo4j-status" style="display: none;"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Données locales</div>
+        <div class="btn-row">
+          <button class="btn btn-danger" onclick="exportData()">Exporter JSON</button>
+          <button class="btn btn-primary" onclick="document.getElementById('importFile').click()">Importer</button>
+          <input type="file" id="importFile" style="display: none;" onchange="importData(event)">
+        </div>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 10px;">
+          Tes données sont stockées localement dans le navigateur.
+        </p>
+      </div>
+    </div>
+
+    <!-- NAV BAR -->
+    <nav class="nav-bar">
+      <div class="nav-item active" data-screen="home" onclick="showScreen('home')">
+        <div class="nav-icon">🏠</div>
+        <div>Accueil</div>
+      </div>
+      <div class="nav-item" data-screen="levels" onclick="showScreen('levels')">
+        <div class="nav-icon">⭐</div>
+        <div>Niveaux</div>
+      </div>
+      <div class="nav-item" data-screen="quiz" onclick="showScreen('quiz')">
+        <div class="nav-icon">📝</div>
+        <div>Quiz</div>
+      </div>
+      <div class="nav-item" data-screen="todo" onclick="showScreen('todo')">
+        <div class="nav-icon">📋</div>
+        <div>To-do</div>
+      </div>
+      <div class="nav-item" data-screen="data" onclick="showScreen('data')">
+        <div class="nav-icon">📊</div>
+        <div>Données</div>
+      </div>
+    </nav>
+  </div>
+
+  <div id="toast">Message</div>
+
+  <script>
+    // === DONNÉES ===
+    const BANKS = [
+      {
+        id: 'm1', year: 2024, source: 'Annale Bac Techno', theme: 'Fonctions',
+        q: 'Laquelle de ces fonctions est décroissante sur R ?',
+        opts: ['f(x) = 2x + 3', 'f(x) = -x + 1', 'f(x) = x²', 'f(x) = ex'],
+        ans: 1, exp: 'f(x) = -x + 1 a un coefficient directeur négatif (-1), donc elle est décroissante sur R.'
+      },
+      {
+        id: 'm2', year: 2023, source: 'Annale Bac Gén', theme: 'Suites',
+        q: 'Une suite arithmétique de premier terme u0 = 5 et de raison r = 3. Quel est u10 ?',
+        opts: ['30', '33', '35', '38'],
+        ans: 2, exp: 'u10 = u0 + 10 × r = 5 + 10 × 3 = 5 + 30 = 35.'
+      },
+      {
+        id: 'f1', year: 2024, source: 'Annale Bac Gén', theme: 'Grammaire',
+        q: 'Dans la phrase "Je lui ai donné le livre", le pronom "lui" est :',
+        opts: ['COI', 'COD', 'Sujet', 'Attribut'],
+        ans: 0, exp: '"Lui" est un pronom complément d\'objet indirect (COI) répondant à la question "à qui ?".'
+      },
+      {
+        id: 'f2', year: 2023, source: 'Annale Bac Techno', theme: 'Littérature',
+        q: 'Quel mouvement littéraire est associé au XIXe siècle et met l\'accent sur le moi et le sentiment ?',
+        opts: ['Réalisme', 'Romantisme', 'Naturalisme', 'Symbolisme'],
+        ans: 1, exp: 'Le Romantisme est un mouvement du début du XIXe siècle valorisant l\'expression personnelle et les émotions.'
+      },
+      {
+        id: 'h1', year: 2024, source: 'Annale Bac Gén', theme: 'Histoire',
+        q: 'En quelle année a eu lieu la Révolution française ?',
+        opts: ['1789', '1793', '1799', '1804'],
+        ans: 0, exp: 'La Révolution française a commencé en 1789 avec la prise de la Bastille.'
+      }
+    ];
+
+    // === ÉTAT ===
+    let state = {
+      profile: { name: '', class: '' },
+      totalXp: 0,
+      level: 1,
+      streak: 0,
+      lastActiveDate: null,
+      dailyXp: 0,
+      todayQuests: [],
+      xpQuests: 0,
+      completedQuizIds: [],
+      todos: []
+    };
+
+    const LEVELS = [
+      { id: 1, name: 'Débutant', xpNeeded: 500 },
+      { id: 2, name: 'Apprenti', xpNeeded: 1200 },
+      { id: 3, name: 'Intermédiaire', xpNeeded: 2500 },
+      { id: 4, name: 'Avancé', xpNeeded: 5000 },
+      { id: 5, name: 'Expert', xpNeeded: 10000 }
+    ];
+
+    const DAILY_QUESTS = [
+      { id: 'q1', text: 'Compléter 1 quiz', xp: 50, type: 'quiz', done: false },
+      { id: 'q2', text: 'Ajouter 1 tâche To-Do', xp: 30, type: 'todo', done: false },
+      { id: 'q3', text: 'Consulter tes niveaux', xp: 20, type: 'levels', done: false },
+      { id: 'q4', text: 'Demander à l\'IA coach', xp: 40, type: 'ai', done: false }
+    ];
+
+    // === UTILITAIRES ===
+    function seededRandom(seed) {
+      let x = seed;
+      x = Math.sin(x++) * 10000;
+      return x - Math.floor(x);
+    }
+
+    function seededShuffle(arr, seed) {
+      const result = [...arr];
+      for (let i = result.length - 1; i > 0; i--) {
+        seed = seededRandom(seed) * 1000;
+        const j = Math.floor(seededRandom(seed) * (i + 1));
+        [result[i], result[j]] = [result[j], result[i]];
+      }
+      return result;
+    }
+
+    function getDailySeed() {
+      const today = new Date();
+      const dateStr = today.getFullYear() + '' + (today.getMonth()+1) + '' + today.getDate();
+      return parseInt(dateStr);
+    }
+
+    function getTodayDate() {
+      return new Date().toISOString().split('T')[0];
+    }
+    
+// vaj ESSENTIELLESDEETAT
+let state = {
+    currentScreen: 'home',
+    quiz: null,
+    quizAnswer: null,
+    neo4j: { uri: '', user: '', pass: '' }
+};
+
+function showScreen(screenName) {
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+    const activeNav = document.querySelector(`.nav-item[data-screen='${screenName}']`);
+    if (activeNav) activeNav.classList.add('active');
+    document.querySelectorAll('.screen').forEach(el => el.style.display = 'none');
+    const target = document.getElementById(screenName);
+    if (target) target.style.display = 'block';
+    state.currentScreen = screenName;
+    if (screenName === 'home') renderHome();
+}
+function renderHome() {
+    const p = data.profile;
+    const el = document.getElementById('txpVal');
+    if (el) el.textContent = p.txp || 0;
+    const el2 = document.getElementById('streakVal');
+    if (el2) el2.textContent = p.streak || 0;
+}
+function loadSavedData() {
+    const saved = localStorage.getItem('questup_profile');
+    if (saved) {
+        const parsed = JSON.parse(saved);
+        Object.assign(data.profile, parsed);
+    }
+}
+function addTodo() {
+    const inp = document.getElementById('todoInput');
+    if (!inp) return;
+    const text = inp.value.trim();
+    if (!text) return;
+    const id = 't' + Date.now();
+    if (!data.profile.todos) data.profile.todos = [];
+    data.profile.todos.push({ id, text, done: false });
+    inp.value = '';
+    saveProfile();
+}
+function saveProfile() {
+    localStorage.setItem('questup_profile', JSON.stringify(data.profile));
+}
+function testNeo4jConnection() {
+    const uri = document.getElementById('neo4jUri').value.trim();
+    const user = document.getElementById('neo4jUser').value.trim();
+    const pass = document.getElementById('neo4jPass').value.trim();
+    const status = document.getElementById('neo4jStatus');
+    if (!uri || !user || !pass) { status.textContent = 'Remplis tous les champs'; status.style.display = 'block'; return; }
+    state.neo4j = { uri, user, pass };
+    status.textContent = 'Connexion AU04j configuree';
+    status.style.color = '#00c853';
+    status.style.display = 'block';
+    localStorage.setItem('questup_neo4j', JSON.stringify(state.neo4j));
+}
+function loadFromNeo4j() {
+    const loaded = localStorage.getItem('questup_profile');
+    if (!loaded) return;
+    const parsed = JSON.parse(loaded);
+    Object.assign(data.profile, parsed);
+    saveProfile();
+}
+function exportData() {
+    const json = JSON.stringify(data.profile);
+    const blob = new Blob([json], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'questup_export.json';
+    a.click();
+}
+function importData(evt) {
+    const file = evt.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+        try {
+            const parsed = JSON.parse(e.target.result);
+            Object.assign(data.profile, parsed);
+            saveProfile();
+            alert('Donnees importees avec succes');
+        } catch (err) { alert('Erreur de fichier'); }
+    };
+    reader.readAsText(file);
+}
+function askInit() {
+    const msg = document.getElementById('initInput').value.trim();
+    if (!msg) return;
+    const box = document.getElementById('coachBox');
+    if (!box) return;
+    const div = document.createElement('div');
+    div.className = 'msg';
+    div.textContent = 'Coach: Salut! Je peux taider en maths, francais, histoire ou physique. Pose-moi ta question.';
+    box.prepend(div);
+}
+function startQuiz(bankId) {
+    const bank = BANKS.find(b => b.id === bankId);
+    if (!bank) return;
+    const seed = getDailySeed() * 7 + bank.id.charCodeAt(0);
+    const shuffled = seededShuffle(bank.qs, seed).slice(0, 5);
+    state.quiz = { bank, qs: shuffled, i: 0, score: 0 };
+    showScreen('quiz');
+    renderQuizQuestion();
+}
+function renderQuizQuestion() {
+    const q = state.quiz.qs[state.quiz.i];
+    const titleEl = document.getElementById('quizTitle');
+    const optsEl = document.getElementById('quizOptions');
+    if (titleEl) titleEl.textContent = q.qt;
+    if (optsEl) {
+        optsEl.innerHTML = '';
+        q.opts.forEach((opt, idx) => {
+            const btn = document.createElement('button');
+            btn.className = 'btn btn-primary btn-q';
+            btn.textContent = opt;
+            btn.onclick = () => selectQuizAnswer(btn, idx === q.ansI);
+            optsEl.appendChild(btn);
+        });
+    }
+}
+function selectQuizAnswer(btn, correct) {
+    if (state.quizAnswer) return;
+    state.quizAnswer = correct;
+    btn.classList.add(correct ? 'btn-success' : 'btn-danger');
+    if (correct) {
+        state.quiz.score++;
+        data.profile.txp += 5;
+    } else {
+        data.profile.txp += 1;
+    }
+    saveProfile();
+    setTimeout(nextQuizQuestion, 1000);
+}
+function nextQuizQuestion() {
+    state.quizAnswer = null;
+    state.quiz.i++;
+    if (state.quiz.i >= state.quiz.qs.length) showQuizResult();
+    else renderQuizQuestion();
+}
+function showQuizResult() {
+    const score = state.quiz.score + '/' + state.quiz.qs.length;
+    alert('Quiz termine: tu as ' + score + '. XP gagnes: ' + (state.quiz.score * 5 + (state.quiz.qs.length - state.quiz.score)));
+    showScreen('home');
+}
+// INITIALIZATION
+function init() {
+    loadSavedData();
+    const neo = localStorage.getItem('questup_neo4j');
+    if (neo) state.neo4j = JSON.parse(neo);
+    renderHome();
+    showScreen('home');
+}
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}
+</script>
+</body>
+</html>
