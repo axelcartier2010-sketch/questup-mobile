@@ -1034,13 +1034,25 @@ function showQuizResult() {
     alert('Quiz termine: tu as ' + score + '. XP gagnes: ' + (state.quiz.score * 5 + (state.quiz.qs.length - state.quiz.score)));
     showScreen('home');
 }
-// INITIALIZATION
+
+    // NAVIGATION — Setup click handlers on nav items
+    function setupNav() {
+        document.querySelectorAll('.nav-item').forEach(function(el) {
+              el.addEventListener('click', function() {
+                      const screen = this.getAttribute('data-screen');
+                      if (screen) showScreen(screen);
+                    });
+            });
+      }
+    
+    // INITIALIZATION
 function init() {
     loadSavedData();
     const neo = localStorage.getItem('questup_neo4j');
     if (neo) state.neo4j = JSON.parse(neo);
     renderHome();
     showScreen('home');
+    setupNav();
 }
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
