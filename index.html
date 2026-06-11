@@ -398,7 +398,7 @@
       justify-content: flex-end;
       margin-top: 16px;
     }
-    /* Nav Bar */
+    /* Sport */ .sport-exercise{background:var(--bg-secondary);border-radius:var(--radius);padding:14px 16px;margin-bottom:10px;border:1px solid var(--border);display:flex;align-items:center;gap:12px} .sport-exercise.done{opacity:0.5} .sport-exercise.done .sport-ex-name{text-decoration:line-through} .sport-ex-icon{font-size:1.8rem} .sport-ex-info{flex:1} .sport-ex-name{font-weight:600;font-size:0.95rem} .sport-ex-detail{font-size:0.8rem;color:var(--text-muted);margin-top:2px} .sport-ex-xp{font-size:0.75rem;color:var(--accent);font-weight:600} .sport-day-badge{display:inline-block;background:var(--accent-soft);color:var(--accent);border-radius:20px;padding:4px 12px;font-size:0.75rem;font-weight:600;margin-bottom:14px} .sport-complete-btn{background:var(--success);color:#fff;border:none;border-radius:var(--radius-sm);padding:6px 12px;font-size:0.8rem;font-weight:600;cursor:pointer;white-space:nowrap} .sport-complete-btn:disabled{opacity:0.5;cursor:default} .sport-summary{background:var(--bg-secondary);border-radius:var(--radius);padding:14px;margin-bottom:12px;border:1px solid var(--border);text-align:center} .sport-summary-val{font-size:1.6rem;font-weight:700;color:var(--accent)} .sport-summary-label{font-size:0.75rem;color:var(--text-muted)} /* Nav Bar */
     .nav-bar {
       position: fixed;
       bottom: 0;
@@ -772,7 +772,7 @@
       </div>
     </nav>
   </div>
-  <div id="toast">Message</div>
+  <div id="screen-sport" class="screen"><div class="container"><div class="card"><div class="card-title">🏃 Sport du jour</div><span class="sport-day-badge" id="sportDayBadge">Aujourd'hui</span><div id="sportSummaryRow" style="display:flex;gap:8px;margin-bottom:14px"><div class="sport-summary" style="flex:1"><div class="sport-summary-val" id="sportDoneCount">0</div><div class="sport-summary-label">Exercices faits</div></div><div class="sport-summary" style="flex:1"><div class="sport-summary-val" id="sportXpEarned">0</div><div class="sport-summary-label">XP gagnés</div></div></div><div id="sportExerciseList"></div></div></div></div><div id="toast">Message</div>
   <script>
     // === DONNEES: BANQUE DE QUESTIONS ===
     const QUESTION_BANK = [
@@ -1398,7 +1398,70 @@
     // Event listener pour le toggle theme
     document.getElementById('themeToggle').addEventListener('click', toggleTheme);
 
-    // === SPORT === const SPORT_PROGRAMS = [   { type: 'Cardio', emoji: '🏃', title: 'S\u00e9ance de Cardio Tempo', duration: '30 min', xp: 80, warmup: '5 min de marche active + \u00e9tirements dynamiques', exercises: ['Interval running: 3 min course + 1 min marche, r\u00e9p\u00e9t\u00e9 6 fois','Jumping Jacks: 30 secondes','Mont\u00e9es de genoux: 30 secondes','Burpees mod\u00e9r\u00e9s: 20 secondes','Saut \u00e0 la corde (ou simul\u00e9): 2 min','Stretching dynamique final: 3 min'], count: 64 },   { type: 'Renforcement', emoji: '💪', title: 'Renforcement Musculaire', duration: '35 min', xp: 90, warmup: '5 min mobilit\u00e9 articulaire', exercises: ['Squats: 3x15','Pompes: 3x10','Fentes avant: 3x12 chaque jambe','Gainage: 3x30 sec','Hip Thrust: 3x15','Dips sur chaise: 3x10'], count: 54 },   { type: 'Mobilit\u00e9', emoji: '🧘', title: 'Mobilit\u00e9 & Souplesse', duration: '25 min', xp: 60, warmup: '3 min respiration profonde', exercises: ['Yoga Sun Salutation: 5 tours','\u00c9tirement ischio-jambiers: 2x45 sec','Pigeon Pose: 2x30 sec chaque c\u00f4t\u00e9','Cat-Cow: 2 min','Rotation thoracique: 2x10','Savasana finale: 3 min'], count: 36 } ];  function getSportProgram() {   var today = new Date();   var dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);   return SPORT_PROGRAMS[dayOfYear % 3]; }  function initSport() {   var today = getTodayDate();   var lastSportDate = localStorage.getItem('questup_sport_date');   if (lastSportDate !== today) {     appState.sportDone = false;     localStorage.setItem('questup_sport_date', today);     localStorage.setItem('questup_sport_done', 'false');   } else {     appState.sportDone = localStorage.getItem('questup_sport_done') === 'true';   }   renderSport(); }  function renderSport() {   var prog = getSportProgram();   var done = appState.sportDone;   document.getElementById('sport-type').textContent = prog.type;   document.getElementById('sport-title').textContent = prog.title;   document.getElementById('sport-duration').textContent = prog.duration;   document.getElementById('sport-exercises-count').textContent = prog.count;   document.getElementById('sport-xp').textContent = '+' + prog.xp + ' XP';   document.getElementById('sport-warmup').textContent = prog.warmup;   var listEl = document.getElementById('sport-exercises-list');   var html = '';   for (var i = 0; i < prog.exercises.length; i++) {     html += '<li>' + prog.exercises[i] + '</li>';   }   listEl.innerHTML = html;   var btn = document.querySelector('.btn-sport-complete');   if (btn) {     if (done) {       btn.textContent = '\u2705 S\u00e9ance compl\u00e9t\u00e9e !';       btn.disabled = true;       btn.style.opacity = '0.6';     } else {       btn.textContent = 'Compl\u00e9ter la s\u00e9ance';       btn.disabled = false;       btn.style.opacity = '1';     }   } }  function completeSport() {   if (appState.sportDone) return;   appState.sportDone = true;   localStorage.setItem('questup_sport_done', 'true');   var prog = getSportProgram();   appState.totalXp += prog.xp;   appState.dailyXp += prog.xp;   appState.level = calcLevel();   saveData();   renderSport();   showToast('+' + prog.xp + ' XP ! S\u00e9ance sport compl\u00e9t\u00e9e !'); }  // INITIALIZATION
+    // === SPORT ===
+        const SPORT_PROGRAMS = [
+          { type: 'Cardio', emoji: '🏃', title: 'Séance de Cardio Tempo', duration: '30 min', xp: 80, warmup: '5 min de marche active + étirements dynamiques', exercises: ['Interval running: 3 min course + 1 min marche, répété 6 fois','Jumping Jacks: 30 secondes','Montées de genoux: 30 secondes','Burpees modérés: 20 secondes','Saut à la corde (ou simulé): 2 min','Stretching dynamique final: 3 min'], count: 6 },
+          { type: 'Renforcement', emoji: '💪', title: 'Renforcement Musculaire', duration: '35 min', xp: 90, warmup: '5 min mobilité articulaire', exercises: ['Squats: 3x15','Pompes: 3x10','Fentes avant: 3x12 chaque jambe','Gainage: 3x30 sec','Hip Thrust: 3x15','Dips sur chaise: 3x10'], count: 6 },
+          { type: 'Mobilité', emoji: '🧘', title: 'Mobilité et Souplesse', duration: '25 min', xp: 60, warmup: '3 min respiration profonde', exercises: ['Yoga Sun Salutation: 5 tours','Étirement ischio-jambiers: 2x45 sec','Pigeon Pose: 2x30 sec chaque côté','Cat-Cow: 2 min','Rotation thoracique: 2x10','Savasana finale: 3 min'], count: 6 }
+        ];
+        function getSportProgram() {
+          var today = new Date();
+          var dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
+          return SPORT_PROGRAMS[dayOfYear % 3];
+        }
+        function initSport() {
+          var today = getTodayDate();
+          var lastSportDate = localStorage.getItem('questup_sport_date');
+          if (lastSportDate !== today) {
+            appState.sportDone = false;
+            localStorage.setItem('questup_sport_date', today);
+            localStorage.setItem('questup_sport_done', 'false');
+          } else {
+            appState.sportDone = localStorage.getItem('questup_sport_done') === 'true';
+          }
+          renderSport();
+        }
+        function renderSport() {
+          var prog = getSportProgram();
+          var done = appState.sportDone;
+          document.getElementById('sport-type').textContent = prog.type;
+          document.getElementById('sport-title').textContent = prog.title;
+          document.getElementById('sport-duration').textContent = prog.duration;
+          document.getElementById('sport-exercises-count').textContent = prog.count;
+          document.getElementById('sport-xp').textContent = '+' + prog.xp + ' XP';
+          document.getElementById('sport-warmup').textContent = prog.warmup;
+          var listEl = document.getElementById('sport-exercises-list');
+          var html = '';
+          for (var i = 0; i < prog.exercises.length; i++) {
+            html += '<li>' + prog.exercises[i] + '</li>';
+          }
+          listEl.innerHTML = html;
+          var btn = document.querySelector('.btn-sport-complete');
+          if (btn) {
+            if (done) {
+              btn.textContent = '✅ Séance complétée !';
+              btn.disabled = true;
+              btn.style.opacity = '0.6';
+            } else {
+              btn.textContent = 'Compléter la séance';
+              btn.disabled = false;
+              btn.style.opacity = '1';
+            }
+          }
+        }
+        function completeSport() {
+          if (appState.sportDone) return;
+          appState.sportDone = true;
+          localStorage.setItem('questup_sport_done', 'true');
+          var prog = getSportProgram();
+          appState.totalXp += prog.xp;
+          appState.dailyXp += prog.xp;
+          appState.level = calcLevel();
+          saveData();
+          renderSport();
+          showToast('+' + prog.xp + ' XP ! Séance sport complétée !');
+        }
+        // INITIALIZATION
     function init() {
       initTheme();
       loadData();
