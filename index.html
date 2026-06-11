@@ -569,6 +569,42 @@
     opacity: 0.9;
   }
 
+  /* ===== CALENDRIER ===== */
+#screen-calendar { padding: 16px; }
+.calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.calendar-header h2 { font-size: 1.1rem; font-weight: 700; }
+.calendar-nav-btn { background: var(--bg-tertiary); border: none; color: var(--text-primary); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 1rem; }
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.calendar-label { text-align: center; font-size: 0.7rem; color: var(--text-muted); padding: 4px 0; font-weight: 600; }
+.calendar-day { min-height: 42px; border-radius: var(--radius-sm); background: var(--bg-secondary); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; }
+.calendar-day:hover { background: var(--bg-tertiary); }
+.calendar-day.today { background: var(--accent-soft); border: 1.5px solid var(--accent); }
+.calendar-day.other-month { opacity: 0.35; }
+.calendar-day .day-num { font-weight: 600; font-size: 0.8rem; line-height: 1; margin-top: 1px; }
+.calendar-day .day-dots { display: flex; gap: 2px; margin-top: 3px; flex-wrap: wrap; justify-content: center; }
+.calendar-day .dot { width: 6px; height: 6px; border-radius: 50%; }
+.dot-sport { background: var(--accent); }
+.dot-event { background: var(--warning); }
+.dot-done { background: var(--success); }
+.calendar-legend { display: flex; gap: 12px; margin: 12px 0; flex-wrap: wrap; }
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.75rem; color: var(--text-secondary); }
+.calendar-section-title { font-size: 0.9rem; font-weight: 700; color: var(--text-secondary); margin: 16px 0 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+.sport-override-card { background: var(--bg-card); border-radius: var(--radius); padding: 14px; margin-bottom: 12px; border: 1px solid var(--border); }
+.sport-override-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 10px; }
+.sport-select { width: 100%; padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--bg-secondary); color: var(--text-primary); margin-bottom: 12px; }
+.event-form { background: var(--bg-card); border-radius: var(--radius); padding: 14px; border: 1px solid var(--border); margin-bottom: 12px; }
+.event-form h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 10px; }
+.event-input { width: 100%; padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--bg-secondary); color: var(--text-primary); margin-bottom: 12px; }
+.btn-add-event { width: 100%; padding: 10px; border: none; border-radius: var(--radius-sm); background: var(--accent); color: #fff; font-size: 0.95rem; font-weight: 700; cursor: pointer; }
+.btn-add-event:hover { opacity: 0.85; }
+.event-list { list-style: none; padding: 0; margin: 0; }
+.event-list li { background: var(--bg-card); border-radius: var(--radius-sm); padding: 10px 14px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+.event-list li .event-date-label { font-size: 0.75rem; color: var(--text-muted); display: block; }
+.event-list li .btn-del-event { background: none; border: none; color: var(--danger); cursor: pointer; font-size: 1rem; padding: 0 4px; }
+.calendar-day-detail { background: var(--bg-card); border-radius: var(--radius); padding: 14px; margin-top: 12px; border: 1px solid var(--border); display: none; }
+.calendar-day-detail.active { display: block; }
+.calendar-day-detail h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; }
+
   </style>
 </head>
 <body class="dark">
@@ -747,6 +783,42 @@
       <button class="btn-sport-complete" onclick="completeSport()">ComplÃ©ter la sÃ©ance</button>
     </div>
   </div>
+
+  <!-- SCREEN: CALENDRIER -->
+<div id="screen-calendar" class="screen">
+  <div class="calendar-header">
+    <button class="calendar-nav-btn" onclick="calPrevMonth()">&#8249;</button>
+    <h2 id="cal-month-title">Mois</h2>
+    <button class="calendar-nav-btn" onclick="calNextMonth()">&#8250;</button>
+  </div>
+  <div class="calendar-legend">
+    <div class="legend-item"><span class="dot dot-sport"></span>Programme sport</div>
+    <div class="legend-item"><span class="dot dot-event"></span>Evenement</div>
+    <div class="legend-item"><span class="dot dot-done"></span>Seance faite</div>
+  </div>
+  <div class="calendar-grid" id="cal-grid"></div>
+  <div class="calendar-day-detail" id="cal-day-detail">
+    <h4 id="cal-detail-title">Jour</h4>
+    <div id="cal-detail-content"></div>
+  </div>
+  <div class="calendar-section-title">Changer le programme du jour</div>
+  <div class="sport-override-card">
+    <h4>&#128197; Programme pour le jour selectionne</h4>
+    <select class="sport-select" id="cal-sport-select">
+      <option value="">-- Programme par defaut --</option>
+    </select>
+    <button class="btn-add-event" onclick="saveCalSportOverride()">Appliquer ce programme</button>
+  </div>
+  <div class="calendar-section-title">Ajouter un evenement</div>
+  <div class="event-form">
+    <h4>&#128197; Nouvel evenement</h4>
+    <input type="text" class="event-input" id="event-title-input" placeholder="Titre de l'evenement">
+    <input type="date" class="event-input" id="event-date-input">
+    <button class="btn-add-event" onclick="addCalEvent()">Ajouter l'evenement</button>
+  </div>
+  <div class="calendar-section-title">Evenements planifies</div>
+  <ul class="event-list" id="event-list"></ul>
+</div>
     <!-- NAV BAR -->
     <nav class="nav-bar">
       <div class="nav-item active" data-screen="home" onclick="showScreen('home')">
@@ -770,6 +842,10 @@
         <div class="nav-icon">&#128200;</div>
         <div>Donnees</div>
       </div>
+      <div class="nav-item" data-screen="calendar" onclick="showScreen('calendar')">
+  <div class="nav-icon">&#128197;</div>
+  <div>Calendrier</div>
+</div>
     </nav>
   </div>
   <div id="screen-sport" class="screen"><div class="container"><div class="card"><div class="card-title">🏃 Sport du jour</div><span class="sport-day-badge" id="sportDayBadge">Aujourd'hui</span><div id="sportSummaryRow" style="display:flex;gap:8px;margin-bottom:14px"><div class="sport-summary" style="flex:1"><div class="sport-summary-val" id="sportDoneCount">0</div><div class="sport-summary-label">Exercices faits</div></div><div class="sport-summary" style="flex:1"><div class="sport-summary-val" id="sportXpEarned">0</div><div class="sport-summary-label">XP gagnés</div></div></div><div id="sportExerciseList"></div></div></div></div><div id="toast">Message</div>
@@ -1453,6 +1529,7 @@
           if (appState.sportDone) return;
           appState.sportDone = true;
           localStorage.setItem('questup_sport_done', 'true');
+          var todayKey = new Date().toISOString().slice(0,10); var doneMap = JSON.parse(localStorage.getItem('questup_sport_done_dates')||'{}'); doneMap[todayKey] = true; localStorage.setItem('questup_sport_done_dates', JSON.stringify(doneMap));
           var prog = getSportProgram();
           appState.totalXp += prog.xp;
           appState.dailyXp += prog.xp;
@@ -1466,9 +1543,176 @@
       initTheme();
       loadData();
       initQuests();
+      initCalendar();
       initSport();
       renderHome();
     }
+
+    // ===== CALENDRIER =====
+var calState = {
+  year: new Date().getFullYear(),
+  month: new Date().getMonth(),
+  selectedDate: null
+};
+
+function initCalendar() {
+  var sel = document.getElementById('cal-sport-select');
+  if (!sel) return;
+  SPORT_PROGRAMS.forEach(function(p, i) {
+    var opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = p.name;
+    sel.appendChild(opt);
+  });
+  renderCalendar();
+  renderEventList();
+}
+
+function getCalEvents() {
+  return JSON.parse(localStorage.getItem('questup_cal_events') || '[]');
+}
+function saveCalEvents(evts) {
+  localStorage.setItem('questup_cal_events', JSON.stringify(evts));
+}
+function getCalOverrides() {
+  return JSON.parse(localStorage.getItem('questup_cal_overrides') || '{}');
+}
+function saveCalOverrides(ov) {
+  localStorage.setItem('questup_cal_overrides', JSON.stringify(ov));
+}
+
+function renderCalendar() {
+  var grid = document.getElementById('cal-grid');
+  var title = document.getElementById('cal-month-title');
+  if (!grid) return;
+  var y = calState.year, m = calState.month;
+  var monthNames = ['Janvier','Fevrier','Mars','Avril','Mai','Juin','Juillet','Aout','Septembre','Octobre','Novembre','Decembre'];
+  title.textContent = monthNames[m] + ' ' + y;
+  var today = new Date(); var todayStr = today.getFullYear()+'-'+pad2(today.getMonth()+1)+'-'+pad2(today.getDate());
+  var events = getCalEvents();
+  var overrides = getCalOverrides();
+  var sportDone = JSON.parse(localStorage.getItem('questup_sport_done_dates') || '{}');
+  var days = ['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'];
+  var html = days.map(function(d){return '<div class="calendar-label">'+d+'</div>';}).join('');
+  var first = new Date(y, m, 1);
+  var startDay = (first.getDay() + 6) % 7;
+  var daysInMonth = new Date(y, m+1, 0).getDate();
+  var daysInPrev = new Date(y, m, 0).getDate();
+  for (var i = 0; i < startDay; i++) {
+    var d2 = daysInPrev - startDay + 1 + i;
+    html += '<div class="calendar-day other-month"><div class="day-num">'+d2+'</div></div>';
+  }
+  for (var d = 1; d <= daysInMonth; d++) {
+    var dateStr = y+'-'+pad2(m+1)+'-'+pad2(d);
+    var isToday = dateStr === todayStr;
+    var isSel = dateStr === calState.selectedDate;
+    var dots = '';
+    var hasOverride = overrides[dateStr] !== undefined;
+    if (hasOverride || getSportProgramForDate(dateStr)) dots += '<span class="dot dot-sport"></span>';
+    if (sportDone[dateStr]) dots += '<span class="dot dot-done"></span>';
+    var evtCount = events.filter(function(e){return e.date===dateStr;}).length;
+    if (evtCount > 0) dots += '<span class="dot dot-event"></span>';
+    var cls = 'calendar-day'+(isToday?' today':'')+(isSel?' selected':'');
+    html += '<div class="'+cls+'" onclick="selectCalDay(\''+dateStr+'\')"><div class="day-num">'+d+'</div><div class="day-dots">'+dots+'</div></div>';
+  }
+  var total = startDay + daysInMonth;
+  var remaining = total % 7 === 0 ? 0 : 7 - (total % 7);
+  for (var i = 1; i <= remaining; i++) {
+    html += '<div class="calendar-day other-month"><div class="day-num">'+i+'</div></div>';
+  }
+  grid.innerHTML = html;
+}
+
+function pad2(n) { return n < 10 ? '0'+n : ''+n; }
+
+function getSportProgramForDate(dateStr) {
+  var d = new Date(dateStr);
+  var idx = Math.floor(Math.abs(d - new Date(2024,0,1))/(1000*60*60*24)) % SPORT_PROGRAMS.length;
+  return SPORT_PROGRAMS[idx];
+}
+
+function selectCalDay(dateStr) {
+  calState.selectedDate = dateStr;
+  renderCalendar();
+  var detail = document.getElementById('cal-day-detail');
+  var detailTitle = document.getElementById('cal-detail-title');
+  var detailContent = document.getElementById('cal-detail-content');
+  var dateInput = document.getElementById('event-date-input');
+  if (dateInput) dateInput.value = dateStr;
+  var overrides = getCalOverrides();
+  var events = getCalEvents();
+  var prog = overrides[dateStr] !== undefined ? SPORT_PROGRAMS[overrides[dateStr]] : getSportProgramForDate(dateStr);
+  var dayEvts = events.filter(function(e){return e.date===dateStr;});
+  var html = '<p style="font-size:0.85rem;color:var(--text-secondary)">&#127947; Programme sport : <strong>' + (prog ? prog.name : 'Aucun') + '</strong></p>';
+  if (dayEvts.length > 0) {
+    html += '<p style="font-size:0.85rem;font-weight:700;margin-top:8px">Evenements :</p><ul style="padding:0 0 0 16px;font-size:0.85rem">';
+    dayEvts.forEach(function(e){ html += '<li>'+e.title+'</li>'; });
+    html += '</ul>';
+  }
+  detailTitle.textContent = dateStr;
+  detailContent.innerHTML = html;
+  detail.classList.add('active');
+  var sel = document.getElementById('cal-sport-select');
+  if (sel) sel.value = overrides[dateStr] !== undefined ? overrides[dateStr] : '';
+}
+
+function calPrevMonth() {
+  calState.month--;
+  if (calState.month < 0) { calState.month = 11; calState.year--; }
+  renderCalendar();
+}
+function calNextMonth() {
+  calState.month++;
+  if (calState.month > 11) { calState.month = 0; calState.year++; }
+  renderCalendar();
+}
+
+function saveCalSportOverride() {
+  if (!calState.selectedDate) { showToast('Selectionnez un jour d\'abord'); return; }
+  var sel = document.getElementById('cal-sport-select');
+  var overrides = getCalOverrides();
+  if (sel.value === '') {
+    delete overrides[calState.selectedDate];
+  } else {
+    overrides[calState.selectedDate] = parseInt(sel.value);
+  }
+  saveCalOverrides(overrides);
+  renderCalendar();
+  selectCalDay(calState.selectedDate);
+  showToast('Programme mis a jour !');
+}
+
+function addCalEvent() {
+  var titleInput = document.getElementById('event-title-input');
+  var dateInput = document.getElementById('event-date-input');
+  if (!titleInput.value.trim() || !dateInput.value) { showToast('Remplis le titre et la date'); return; }
+  var events = getCalEvents();
+  events.push({ id: Date.now(), title: titleInput.value.trim(), date: dateInput.value });
+  saveCalEvents(events);
+  titleInput.value = '';
+  renderCalendar();
+  renderEventList();
+  if (calState.selectedDate === dateInput.value) selectCalDay(calState.selectedDate);
+  showToast('Evenement ajoute !');
+}
+
+function deleteCalEvent(id) {
+  var events = getCalEvents().filter(function(e){ return e.id !== id; });
+  saveCalEvents(events);
+  renderCalendar();
+  renderEventList();
+  showToast('Evenement supprime');
+}
+
+function renderEventList() {
+  var list = document.getElementById('event-list');
+  if (!list) return;
+  var events = getCalEvents().sort(function(a,b){ return a.date > b.date ? 1 : -1; });
+  if (events.length === 0) { list.innerHTML = '<li style="color:var(--text-muted);font-size:0.85rem">Aucun evenement planifie</li>'; return; }
+  list.innerHTML = events.map(function(e) {
+    return '<li><div><span class="event-date-label">'+e.date+'</span>'+e.title+'</div><button class="btn-del-event" onclick="deleteCalEvent('+e.id+')">&#128465;</button></li>';
+  }).join('');
+}
 
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', init);
