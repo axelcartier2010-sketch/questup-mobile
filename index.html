@@ -455,6 +455,120 @@
       transform: translateX(-50%) translateY(0);
       opacity: 1;
     }
+      /* SCREEN: SPORT */
+  #screen-sport .sport-card {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin: 16px;
+  }
+  #screen-sport .card-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+  #screen-sport .sport-type-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  #screen-sport .sport-title {
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+  }
+  #screen-sport .sport-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  #screen-sport .sport-info-item {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-sm);
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  #screen-sport .sport-info-item span:first-child {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  #screen-sport .sport-info-item span:last-child {
+    color: var(--text-primary);
+    font-weight: 700;
+  }
+  #screen-sport .sport-warmup {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    margin-bottom: 16px;
+  }
+  #screen-sport .sport-warmup-title {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+    color: var(--text-secondary);
+  }
+  #screen-sport .sport-warmup-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+  #screen-sport .sport-exercises {
+    margin-bottom: 16px;
+  }
+  #screen-sport .sport-exercises-title {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+  }
+  #screen-sport .sport-exercises-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  #screen-sport .sport-exercises-list li {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    margin-bottom: 6px;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  #screen-sport .sport-exercises-list li::before {
+    content: '\2713';
+    color: var(--success);
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  #screen-sport .btn-sport-complete {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    background: var(--accent);
+    color: #fff;
+    transition: opacity 0.2s;
+  }
+  #screen-sport .btn-sport-complete:hover {
+    opacity: 0.9;
+  }
+
   </style>
 </head>
 <body class="dark">
@@ -604,6 +718,35 @@
       </div>
     </div>
 
+    
+  <!-- SCREEN: SPORT -->
+  <div id="screen-sport" class="screen">
+    <div class="sport-card">
+      <div class="sport-type-badge" id="sport-type">Cardio</div>
+      <div class="sport-title" id="sport-title">SÃ©ance de Cardio Tempo</div>
+      <div class="sport-info">
+        <div class="sport-info-item"><span>DurÃ©e:</span><span id="sport-duration">30 min</span></div>
+        <div class="sport-info-item"><span>Exercices:</span><span id="sport-exercises-count">6</span></div>
+        <div class="sport-info-item"><span>XP:</span><span id="sport-xp">+150 XP</span></div>
+      </div>
+      <div class="sport-warmup">
+        <div class="sport-warmup-title">Ã‰chauffement</div>
+        <div class="sport-warmup-desc" id="sport-warmup">5 min de marche active + Ã©tirements dynamiques</div>
+      </div>
+      <div class="sport-exercises">
+        <div class="sport-exercises-title">Exercices</div>
+        <ul class="sport-exercises-list" id="sport-exercises-list">
+          <li>Interval running: 3 min course + 1 min marche, rÃ©pÃ©tÃ© 6 fois</li>
+          <li>Jumping Jacks: 30 secondes</li>
+          <li>MontÃ©es de genoux: 30 secondes</li>
+          <li>Burpees modÃ©rÃ©s: 20 secondes</li>
+          <li>Saut Ã  la corde (ou simulÃ©): 2 min</li>
+          <li>Stretching dynamique final: 3 min</li>
+        </ul>
+      </div>
+      <button class="btn-sport-complete" onclick="completeSport()">ComplÃ©ter la sÃ©ance</button>
+    </div>
+  </div>
     <!-- NAV BAR -->
     <nav class="nav-bar">
       <div class="nav-item active" data-screen="home" onclick="showScreen('home')">
@@ -621,8 +764,9 @@
       <div class="nav-item" data-screen="todo" onclick="showScreen('todo')">
         <div class="nav-icon">&#128221;</div>
         <div>To-do</div>
+        
       </div>
-      <div class="nav-item" data-screen="data" onclick="showScreen('data')">
+      <div class="nav-item" data-screen="sport" onclick="showScreen('sport')"><span class="nav-icon">🏋️</span>Sport</div><div class="nav-item" data-screen="data" onclick="showScreen('data')">
         <div class="nav-icon">&#128200;</div>
         <div>Donnees</div>
       </div>
@@ -1254,11 +1398,12 @@
     // Event listener pour le toggle theme
     document.getElementById('themeToggle').addEventListener('click', toggleTheme);
 
-    // INITIALIZATION
+    // === SPORT === const SPORT_PROGRAMS = [   { type: 'Cardio', emoji: '🏃', title: 'S\u00e9ance de Cardio Tempo', duration: '30 min', xp: 80, warmup: '5 min de marche active + \u00e9tirements dynamiques', exercises: ['Interval running: 3 min course + 1 min marche, r\u00e9p\u00e9t\u00e9 6 fois','Jumping Jacks: 30 secondes','Mont\u00e9es de genoux: 30 secondes','Burpees mod\u00e9r\u00e9s: 20 secondes','Saut \u00e0 la corde (ou simul\u00e9): 2 min','Stretching dynamique final: 3 min'], count: 64 },   { type: 'Renforcement', emoji: '💪', title: 'Renforcement Musculaire', duration: '35 min', xp: 90, warmup: '5 min mobilit\u00e9 articulaire', exercises: ['Squats: 3x15','Pompes: 3x10','Fentes avant: 3x12 chaque jambe','Gainage: 3x30 sec','Hip Thrust: 3x15','Dips sur chaise: 3x10'], count: 54 },   { type: 'Mobilit\u00e9', emoji: '🧘', title: 'Mobilit\u00e9 & Souplesse', duration: '25 min', xp: 60, warmup: '3 min respiration profonde', exercises: ['Yoga Sun Salutation: 5 tours','\u00c9tirement ischio-jambiers: 2x45 sec','Pigeon Pose: 2x30 sec chaque c\u00f4t\u00e9','Cat-Cow: 2 min','Rotation thoracique: 2x10','Savasana finale: 3 min'], count: 36 } ];  function getSportProgram() {   var today = new Date();   var dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);   return SPORT_PROGRAMS[dayOfYear % 3]; }  function initSport() {   var today = getTodayDate();   var lastSportDate = localStorage.getItem('questup_sport_date');   if (lastSportDate !== today) {     appState.sportDone = false;     localStorage.setItem('questup_sport_date', today);     localStorage.setItem('questup_sport_done', 'false');   } else {     appState.sportDone = localStorage.getItem('questup_sport_done') === 'true';   }   renderSport(); }  function renderSport() {   var prog = getSportProgram();   var done = appState.sportDone;   document.getElementById('sport-type').textContent = prog.type;   document.getElementById('sport-title').textContent = prog.title;   document.getElementById('sport-duration').textContent = prog.duration;   document.getElementById('sport-exercises-count').textContent = prog.count;   document.getElementById('sport-xp').textContent = '+' + prog.xp + ' XP';   document.getElementById('sport-warmup').textContent = prog.warmup;   var listEl = document.getElementById('sport-exercises-list');   var html = '';   for (var i = 0; i < prog.exercises.length; i++) {     html += '<li>' + prog.exercises[i] + '</li>';   }   listEl.innerHTML = html;   var btn = document.querySelector('.btn-sport-complete');   if (btn) {     if (done) {       btn.textContent = '\u2705 S\u00e9ance compl\u00e9t\u00e9e !';       btn.disabled = true;       btn.style.opacity = '0.6';     } else {       btn.textContent = 'Compl\u00e9ter la s\u00e9ance';       btn.disabled = false;       btn.style.opacity = '1';     }   } }  function completeSport() {   if (appState.sportDone) return;   appState.sportDone = true;   localStorage.setItem('questup_sport_done', 'true');   var prog = getSportProgram();   appState.totalXp += prog.xp;   appState.dailyXp += prog.xp;   appState.level = calcLevel();   saveData();   renderSport();   showToast('+' + prog.xp + ' XP ! S\u00e9ance sport compl\u00e9t\u00e9e !'); }  // INITIALIZATION
     function init() {
       initTheme();
       loadData();
       initQuests();
+      initSport();
       renderHome();
     }
 
