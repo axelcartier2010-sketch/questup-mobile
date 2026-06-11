@@ -25,7 +25,6 @@
       --radius-sm: 8px;
       --radius-lg: 16px;
     }
-
     .light {
       --bg-primary: #ffffff;
       --bg-secondary: #f6f8fa;
@@ -38,12 +37,7 @@
       --ring-bg: #eaeef2;
       --shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
       background: var(--bg-primary);
@@ -54,14 +48,12 @@
       overflow-x: hidden;
       transition: background 0.3s, color 0.3s;
     }
-
     .container {
       max-width: 480px;
       margin: 0 auto;
       width: 100%;
       padding-bottom: 80px;
     }
-
     header {
       display: flex;
       justify-content: space-between;
@@ -73,19 +65,8 @@
       z-index: 100;
       border-bottom: 1px solid var(--border);
     }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 1.3rem;
-      font-weight: 700;
-    }
-
-    .logo-icon {
-      font-size: 1.5rem;
-    }
-
+    .logo { display: flex; align-items: center; gap: 8px; font-size: 1.3rem; font-weight: 700; }
+    .logo-icon { font-size: 1.5rem; }
     .theme-toggle {
       background: var(--bg-tertiary);
       border: none;
@@ -106,7 +87,6 @@
       margin: 16px;
       border: 1px solid var(--border);
     }
-
     .card-title {
       font-size: 0.75rem;
       text-transform: uppercase;
@@ -114,20 +94,14 @@
       color: var(--text-muted);
       margin-bottom: 12px;
     }
-
-    .form-group {
-      margin-bottom: 16px;
-    }
-
+    .form-group { margin-bottom: 16px; }
     .form-group label {
       display: block;
       font-size: 0.85rem;
       color: var(--text-secondary);
       margin-bottom: 6px;
     }
-
-    .form-group input,
-    .form-group select {
+    .form-group input, .form-group select {
       width: 100%;
       padding: 10px 14px;
       background: var(--bg-secondary);
@@ -137,18 +111,8 @@
       font-size: 0.95rem;
       outline: none;
     }
-
-    .form-group input:focus,
-    .form-group select:focus {
-      border-color: var(--accent);
-    }
-
-    .btn-row {
-      display: flex;
-      gap: 12px;
-      margin-top: 8px;
-    }
-
+    .form-group input:focus, .form-group select:focus { border-color: var(--accent); }
+    .btn-row { display: flex; gap: 12px; margin-top: 8px; }
     .btn {
       padding: 10px 20px;
       border-radius: var(--radius-sm);
@@ -158,42 +122,26 @@
       cursor: pointer;
       transition: opacity 0.2s;
     }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #0d1117;
-    }
-
+    .btn-primary { background: var(--accent); color: #0d1117; }
     .btn-danger {
       background: var(--bg-tertiary);
       color: var(--danger);
       border: 1px solid var(--danger);
     }
-
-    .btn:active {
-      opacity: 0.7;
-    }
-    .progress-section {
-      text-align: center;
-    }
-
+    .btn:active { opacity: 0.7; }
+    .progress-section { text-align: center; }
     .progress-ring-container {
       position: relative;
       width: 140px;
       height: 140px;
       margin: 0 auto;
     }
-
-    .progress-ring svg {
-      transform: rotate(-90deg);
-    }
-
+    .progress-ring svg { transform: rotate(-90deg); }
     .progress-ring-circle-bg {
       fill: none;
       stroke: var(--ring-bg);
       stroke-width: 10;
     }
-
     .progress-ring-circle {
       fill: none;
       stroke: var(--accent);
@@ -201,7 +149,6 @@
       stroke-linecap: round;
       transition: stroke-dashoffset 0.5s ease;
     }
-
     .progress-text {
       position: absolute;
       top: 50%;
@@ -209,25 +156,21 @@
       transform: translate(-50%, -50%);
       text-align: center;
     }
-
     .progress-xp {
       font-size: 1.8rem;
       font-weight: 700;
       color: var(--text-primary);
     }
-
     .progress-label {
       font-size: 0.75rem;
       color: var(--text-muted);
     }
-
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 12px;
       margin-top: 16px;
     }
-
     .stat-card {
       background: var(--bg-secondary);
       border-radius: var(--radius);
@@ -235,13 +178,11 @@
       text-align: center;
       border: 1px solid var(--border);
     }
-
     .stat-value {
       font-size: 1.5rem;
       font-weight: 700;
       color: var(--accent);
     }
-
     .stat-label {
       font-size: 0.75rem;
       color: var(--text-muted);
@@ -253,7 +194,6 @@
       align-items: center;
       margin-bottom: 12px;
     }
-
     .quests-count {
       background: var(--accent-soft);
       color: var(--accent);
@@ -262,7 +202,6 @@
       font-size: 0.75rem;
       font-weight: 600;
     }
-
     .quest-item {
       background: var(--bg-secondary);
       border-radius: var(--radius-sm);
@@ -273,133 +212,11 @@
       gap: 10px;
       border: 1px solid var(--border);
     }
-
-    .quest-checkbox {
-      width: 20px;
-      height: 20px;
-      accent-color: var(--success);
-    }
-
-    .quest-text {
-      font-size: 0.9rem;
-      flex: 1;
-    }
-
-    .quest-xp {
-      font-size: 0.75rem;
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    /* Quiz Cards */
-    .quiz-card {
-      background: var(--bg-card);
-      border-radius: var(--radius-lg);
-      padding: 20px;
-      margin: 16px;
-      border: 1px solid var(--border);
-    }
-
-    .quiz-topic {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--accent);
-      margin-bottom: 8px;
-    }
-
-    .quiz-question {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 16px;
-      line-height: 1.5;
-    }
-
-    .quiz-options {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .quiz-option {
-      background: var(--bg-secondary);
-      border: 2px solid var(--border);
-      border-radius: var(--radius);
-      padding: 12px 16px;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-align: left;
-      font-size: 0.95rem;
-    }
-
-    .quiz-option:hover {
-      border-color: var(--accent);
-    }
-
-    .quiz-option.selected {
-      border-color: var(--accent);
-      background: var(--accent-soft);
-    }
-
-    .quiz-option.correct {
-      border-color: var(--success);
-      background: rgba(35, 134, 54, 0.15);
-    }
-
-    .quiz-option.wrong {
-      border-color: var(--danger);
-      background: rgba(218, 54, 51, 0.15);
-    }
-    .quiz-explanation {
-      background: var(--accent-soft);
-      border-radius: var(--radius);
-      padding: 14px;
-      margin-top: 16px;
-      font-size: 0.9rem;
-      border-left: 3px solid var(--accent);
-    }
-
-    .quiz-explanation-title {
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 6px;
-    }
-
-    /* Nav Bar */
-    .nav-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: var(--bg-card);
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-around;
-      padding: 8px 0;
-      z-index: 1000;
-    }
-
-    .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.7rem;
-      cursor: pointer;
-      padding: 4px 12px;
-      transition: color 0.2s;
-    }
-
-    .nav-item.active {
-      color: var(--accent);
-    }
-
-    .nav-icon {
-      font-size: 1.3rem;
-    }
-
+    .quest-item.done { opacity: 0.5; }
+    .quest-item.done .quest-text { text-decoration: line-through; }
+    .quest-checkbox { width: 20px; height: 20px; accent-color: var(--success); }
+    .quest-text { font-size: 0.9rem; flex: 1; }
+    .quest-xp { font-size: 0.75rem; color: var(--accent); font-weight: 600; }
     /* Levels Page */
     .level-item {
       background: var(--bg-card);
@@ -411,7 +228,6 @@
       gap: 16px;
       border: 1px solid var(--border);
     }
-
     .level-number {
       width: 48px;
       height: 48px;
@@ -424,32 +240,19 @@
       font-weight: 700;
       color: var(--text-muted);
     }
-
     .level-item.active .level-number {
       background: var(--accent);
       color: #0d1117;
     }
-
-    .level-info {
-      flex: 1;
-    }
-
-    .level-name {
-      font-weight: 600;
-    }
-
-    .level-xp-needed {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
+    .level-info { flex: 1; }
+    .level-name { font-weight: 600; }
+    .level-xp-needed { font-size: 0.8rem; color: var(--text-muted); }
     /* To-Do */
     .todo-input-container {
       display: flex;
       gap: 8px;
       margin-bottom: 16px;
     }
-
     .todo-input {
       flex: 1;
       padding: 10px;
@@ -458,7 +261,6 @@
       border-radius: var(--radius-sm);
       color: var(--text-primary);
     }
-
     .todo-item {
       display: flex;
       align-items: center;
@@ -469,12 +271,7 @@
       margin-bottom: 8px;
       border: 1px solid var(--border);
     }
-
-    .todo-item.done {
-      opacity: 0.5;
-      text-decoration: line-through;
-    }
-
+    .todo-item.done { opacity: 0.5; text-decoration: line-through; }
     .todo-delete {
       margin-left: auto;
       background: none;
@@ -494,7 +291,6 @@
       color: var(--text-primary);
       font-size: 0.85rem;
     }
-
     .neo4j-status {
       padding: 10px;
       border-radius: var(--radius-sm);
@@ -502,17 +298,8 @@
       font-size: 0.85rem;
       text-align: center;
     }
-
-    .neo4j-status.connected {
-      background: rgba(35, 134, 54, 0.15);
-      color: var(--success);
-    }
-
-    .neo4j-status.error {
-      background: rgba(218, 54, 51, 0.15);
-      color: var(--danger);
-    }
-
+    .neo4j-status.connected { background: rgba(35, 134, 54, 0.15); color: var(--success); }
+    .neo4j-status.error { background: rgba(218, 54, 51, 0.15); color: var(--danger); }
     /* AI Coach */
     .ai-chat {
       background: var(--bg-card);
@@ -521,38 +308,29 @@
       margin: 16px;
       border: 1px solid var(--border);
     }
-
     .ai-messages {
       min-height: 200px;
       max-height: 300px;
       overflow-y: auto;
       margin-bottom: 12px;
     }
-
     .ai-message {
       padding: 10px 14px;
       border-radius: var(--radius);
       margin-bottom: 10px;
       font-size: 0.9rem;
     }
-
     .ai-message.coach {
       background: var(--bg-secondary);
       border: 1px solid var(--border);
       border-radius: var(--radius) var(--radius) var(--radius) 0;
     }
-
     .ai-message.user {
       background: var(--accent-soft);
       border-radius: var(--radius) var(--radius) 0 var(--radius);
       margin-left: 20%;
     }
-
-    .ai-input-container {
-      display: flex;
-      gap: 8px;
-    }
-
+    .ai-input-container { display: flex; gap: 8px; }
     .ai-input {
       flex: 1;
       padding: 10px;
@@ -561,7 +339,6 @@
       border-radius: var(--radius-sm);
       color: var(--text-primary);
     }
-
     .ai-btn {
       background: var(--accent);
       color: #0d1117;
@@ -571,7 +348,92 @@
       font-weight: 600;
       cursor: pointer;
     }
-
+    /* Quiz */
+    .quiz-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      margin: 16px;
+      border: 1px solid var(--border);
+    }
+    .quiz-topic {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .quiz-question {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+    .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+    .quiz-option {
+      background: var(--bg-secondary);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+    .quiz-option:hover { border-color: var(--accent); }
+    .quiz-option.selected { border-color: var(--accent); background: var(--accent-soft); }
+    .quiz-option.correct { border-color: var(--success); background: rgba(35, 134, 54, 0.15); }
+    .quiz-option.wrong { border-color: var(--danger); background: rgba(218, 54, 51, 0.15); }
+    .quiz-explanation {
+      background: var(--accent-soft);
+      border-radius: var(--radius);
+      padding: 14px;
+      margin-top: 16px;
+      font-size: 0.9rem;
+      border-left: 3px solid var(--accent);
+    }
+    .quiz-explanation-title { font-weight: 600; color: var(--accent); margin-bottom: 6px; }
+    .quiz-card-footer {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 16px;
+    }
+    /* Nav Bar */
+    .nav-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--bg-card);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-around;
+      padding: 8px 0;
+      z-index: 1000;
+    }
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.7rem;
+      cursor: pointer;
+      padding: 4px 12px;
+      transition: color 0.2s;
+    }
+    .nav-item.active { color: var(--accent); }
+    .nav-icon { font-size: 1.3rem; }
+    /* Screen visibility */
+    .screen { display: none; }
+    .screen.active { display: block; }
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-muted);
+    }
+    .empty-state-icon { font-size: 3rem; margin-bottom: 12px; }
     /* Toast */
     #toast {
       position: fixed;
@@ -589,30 +451,9 @@
       transition: all 0.3s ease;
       white-space: nowrap;
     }
-
     #toast.show {
       transform: translateX(-50%) translateY(0);
       opacity: 1;
-    }
-
-    /* Screen visibility */
-    .screen {
-      display: none;
-    }
-
-    .screen.active {
-      display: block;
-    }
-
-    .empty-state {
-      text-align: center;
-      padding: 40px 20px;
-      color: var(--text-muted);
-    }
-
-    .empty-state-icon {
-      font-size: 3rem;
-      margin-bottom: 12px;
     }
   </style>
 </head>
@@ -620,33 +461,33 @@
   <div class="container">
     <header>
       <div class="logo">
-        <span class="logo-icon">🎮</span>
+        <span class="logo-icon">&#127918;</span>
         QuestUp
       </div>
-      <button class="theme-toggle" id="themeToggle">🌙</button>
+      <button class="theme-toggle" id="themeToggle">&#127769;</button>
     </header>
 
-    <!-- ACCUEIL -->
+    <!-- SCREEN: ACCUEIL -->
     <div id="screen-home" class="screen active">
       <div class="card">
         <div class="card-title">Compte Joueur</div>
         <div class="form-group">
           <label>Nom</label>
-          <input type="text" id="playerName" placeholder="Ton prénom">
+          <input type="text" id="playerName" placeholder="Ton prenom">
         </div>
         <div class="form-group">
           <label>Classe</label>
           <select id="playerClass">
-            <option value="">Sélectionner</option>
-            <option value="premiere-generale">Première générale</option>
-            <option value="premiere-techno">Première techno</option>
-            <option value="terminale-generale">Terminale générale</option>
-            <option value="terminale-techno">Terminale techno</option>
+            <option value="">Selectionner</option>
             <option value="seconde">Seconde</option>
+            <option value="premiere-generale">Premiere generale</option>
+            <option value="premiere-techno">Premiere techno</option>
+            <option value="terminale-generale">Terminale generale</option>
+            <option value="terminale-techno">Terminale techno</option>
           </select>
         </div>
         <div class="btn-row">
-          <button class="btn btn-primary" onclick="saveProfile()">Mettre à jour</button>
+          <button class="btn btn-primary" onclick="saveProfile()">Mettre a jour</button>
           <button class="btn btn-danger" onclick="resetAll()">Reset global</button>
         </div>
       </div>
@@ -654,10 +495,9 @@
       <div class="card progress-section">
         <div class="card-title">Progression du jour</div>
         <div class="progress-ring-container">
-          <svg width="140" height="140">
+          <svg class="progress-ring" width="140" height="140">
             <circle class="progress-ring-circle-bg" cx="70" cy="70" r="55"/>
-            <circle class="progress-ring-circle" id="progressCircle" cx="70" cy="70" r="55"
-              stroke-dasharray="345.4" stroke-dashoffset="345.4"/>
+            <circle class="progress-ring-circle" id="progressCircle" cx="70" cy="70" r="55" stroke-dasharray="345.4" stroke-dashoffset="345.4"/>
           </svg>
           <div class="progress-text">
             <div class="progress-xp" id="dailyXp">0</div>
@@ -670,7 +510,7 @@
             <div class="stat-label">Niveau</div>
           </div>
           <div class="stat-card">
-            <div class="stat-value"><span id="streakDisplay">0</span> 🔥</div>
+            <div class="stat-value"><span id="streakDisplay">0</span> &#128293;</div>
             <div class="stat-label">Streak</div>
           </div>
           <div class="stat-card">
@@ -686,7 +526,7 @@
 
       <div class="card">
         <div class="quests-header">
-          <div class="card-title" style="margin-bottom: 0;">Quêtes du jour</div>
+          <div class="card-title" style="margin-bottom: 0;">Quetes du jour</div>
           <div class="quests-count" id="questsCount">0/4</div>
         </div>
         <div id="questsList"></div>
@@ -694,9 +534,7 @@
 
       <div class="card">
         <div class="card-title">IA Coach</div>
-        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 12px;">
-          Pose-moi une question sur tes révisions, ta progression ou ton emploi du temps !
-        </p>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 12px;">Pose-moi une question sur tes revisions, ta progression ou ton emploi du temps !</p>
         <div class="ai-chat">
           <div class="ai-messages" id="aiMessages">
             <div class="ai-message coach">Salut ! Je suis ton coach QuestUp. Comment je peux t'aider aujourd'hui ?</div>
@@ -709,7 +547,7 @@
       </div>
     </div>
 
-    <!-- NIVEAUX -->
+    <!-- SCREEN: NIVEAUX -->
     <div id="screen-levels" class="screen">
       <div class="card">
         <div class="card-title">Tes niveaux</div>
@@ -717,348 +555,718 @@
       </div>
     </div>
 
-    <!-- QUIZ -->
+    <!-- SCREEN: QUIZ -->
     <div id="screen-quiz" class="screen">
       <div id="quizCard"></div>
       <div id="quizEmpty" class="empty-state" style="display: none;">
-        <div class="empty-state-icon">🎯</div>
-        <h3>Quiz terminé pour aujourd'hui !</h3>
+        <div class="empty-state-icon">&#127919;</div>
+        <h3>Quiz termine pour aujourd'hui !</h3>
         <p>Reviens demain pour de nouvelles questions.</p>
       </div>
     </div>
 
-    <!-- TO-DO -->
+    <!-- SCREEN: TO-DO -->
     <div id="screen-todo" class="screen">
       <div class="card">
         <div class="card-title">To-Do du jour</div>
         <div class="todo-input-container">
-          <input type="text" id="todoInput" class="todo-input" placeholder="Nouvelle tâche...">
+          <input type="text" id="todoInput" class="todo-input" placeholder="Nouvelle tache...">
           <button class="btn btn-primary" onclick="addTodo()">+</button>
         </div>
         <div id="todoList"></div>
       </div>
     </div>
 
-    <!-- DONNÉES -->
+    <!-- SCREEN: DONNEES -->
     <div id="screen-data" class="screen">
       <div class="card">
         <div class="card-title">Connexion Neo4j AuraDB</div>
-        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 16px;">
-          Connecte ta base de données Neo4j pour sauvegarder ta progression.
-        </p>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 16px;">Connecte ta base de donnees Neo4j pour sauvegarder ta progression.</p>
         <div class="neo4j-fields">
           <input type="text" id="neo4jUri" placeholder="Neo4j URI (neo4j+s://...)" autocomplete="off">
           <input type="text" id="neo4jUser" placeholder="Identifiant" autocomplete="off">
           <input type="password" id="neo4jPass" placeholder="Mot de passe" autocomplete="off">
         </div>
         <div class="btn-row">
-          <button class="btn btn-primary" onclick="testNeo4jConnection()">↑ Sync vers Neo4j</button>
-          <button class="btn btn-primary" onclick="loadFromNeo4j()">↓ Charger</button>
+          <button class="btn btn-primary" onclick="testNeo4jConnection()">Sync vers Neo4j</button>
+          <button class="btn btn-primary" onclick="loadFromNeo4j()">Charger</button>
         </div>
         <div id="neo4jStatus" class="neo4j-status" style="display: none;"></div>
       </div>
       <div class="card">
-        <div class="card-title">Données locales</div>
+        <div class="card-title">Donnees locales</div>
         <div class="btn-row">
           <button class="btn btn-danger" onclick="exportData()">Exporter JSON</button>
           <button class="btn btn-primary" onclick="document.getElementById('importFile').click()">Importer</button>
           <input type="file" id="importFile" style="display: none;" onchange="importData(event)">
         </div>
-        <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 10px;">
-          Tes données sont stockées localement dans le navigateur.
-        </p>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 10px;">Tes donnees sont stockees localement dans le navigateur.</p>
       </div>
     </div>
 
     <!-- NAV BAR -->
     <nav class="nav-bar">
       <div class="nav-item active" data-screen="home" onclick="showScreen('home')">
-        <div class="nav-icon">🏠</div>
+        <div class="nav-icon">&#127968;</div>
         <div>Accueil</div>
       </div>
       <div class="nav-item" data-screen="levels" onclick="showScreen('levels')">
-        <div class="nav-icon">⭐</div>
+        <div class="nav-icon">&#11088;</div>
         <div>Niveaux</div>
       </div>
       <div class="nav-item" data-screen="quiz" onclick="showScreen('quiz')">
-        <div class="nav-icon">📝</div>
+        <div class="nav-icon">&#128221;</div>
         <div>Quiz</div>
       </div>
       <div class="nav-item" data-screen="todo" onclick="showScreen('todo')">
-        <div class="nav-icon">📋</div>
+        <div class="nav-icon">&#128221;</div>
         <div>To-do</div>
       </div>
       <div class="nav-item" data-screen="data" onclick="showScreen('data')">
-        <div class="nav-icon">📊</div>
-        <div>Données</div>
+        <div class="nav-icon">&#128200;</div>
+        <div>Donnees</div>
       </div>
     </nav>
   </div>
-
   <div id="toast">Message</div>
-
   <script>
-    // === DONNÉES ===
-    const BANKS = [
+    // === DONNEES: BANQUE DE QUESTIONS ===
+    const QUESTION_BANK = [
       {
-        id: 'm1', year: 2024, source: 'Annale Bac Techno', theme: 'Fonctions',
-        q: 'Laquelle de ces fonctions est décroissante sur R ?',
-        opts: ['f(x) = 2x + 3', 'f(x) = -x + 1', 'f(x) = x²', 'f(x) = ex'],
-        ans: 1, exp: 'f(x) = -x + 1 a un coefficient directeur négatif (-1), donc elle est décroissante sur R.'
+        id: 'm1', theme: 'Maths',
+        q: 'Laquelle de ces fonctions est decroissante sur R ?',
+        opts: ['f(x) = 2x + 3', 'f(x) = -x + 1', 'f(x) = x^2', 'f(x) = e^x'],
+        ans: 1,
+        exp: 'f(x) = -x + 1 a un coefficient directeur negatif (-1), donc elle est decroissante sur R.'
       },
       {
-        id: 'm2', year: 2023, source: 'Annale Bac Gén', theme: 'Suites',
-        q: 'Une suite arithmétique de premier terme u0 = 5 et de raison r = 3. Quel est u10 ?',
+        id: 'm2', theme: 'Maths',
+        q: 'Suite arithmetique: u0 = 5, r = 3. Quel est u10 ?',
         opts: ['30', '33', '35', '38'],
-        ans: 2, exp: 'u10 = u0 + 10 × r = 5 + 10 × 3 = 5 + 30 = 35.'
+        ans: 2,
+        exp: 'u10 = u0 + 10*r = 5 + 10*3 = 35.'
       },
       {
-        id: 'f1', year: 2024, source: 'Annale Bac Gén', theme: 'Grammaire',
-        q: 'Dans la phrase "Je lui ai donné le livre", le pronom "lui" est :',
+        id: 'f1', theme: 'Francais',
+        q: 'Dans "Je lui ai donne le livre", le pronom "lui" est :',
         opts: ['COI', 'COD', 'Sujet', 'Attribut'],
-        ans: 0, exp: '"Lui" est un pronom complément d\'objet indirect (COI) répondant à la question "à qui ?".'
+        ans: 0,
+        exp: '"Lui" est un COI repondant a la question "a qui ?".'
       },
       {
-        id: 'f2', year: 2023, source: 'Annale Bac Techno', theme: 'Littérature',
-        q: 'Quel mouvement littéraire est associé au XIXe siècle et met l\'accent sur le moi et le sentiment ?',
-        opts: ['Réalisme', 'Romantisme', 'Naturalisme', 'Symbolisme'],
-        ans: 1, exp: 'Le Romantisme est un mouvement du début du XIXe siècle valorisant l\'expression personnelle et les émotions.'
+        id: 'f2', theme: 'Francais',
+        q: 'Quel mouvement litteraire du XIXe siecle met l\'accent sur le moi et le sentiment ?',
+        opts: ['Realisme', 'Romantisme', 'Naturalisme', 'Symbolisme'],
+        ans: 1,
+        exp: 'Le Romantisme est un mouvement du debut du XIXe siecle valorisant l\'expression personnelle.'
       },
       {
-        id: 'h1', year: 2024, source: 'Annale Bac Gén', theme: 'Histoire',
-        q: 'En quelle année a eu lieu la Révolution française ?',
+        id: 'h1', theme: 'Histoire',
+        q: 'En quelle annee a eu lieu la Revolution francaise ?',
         opts: ['1789', '1793', '1799', '1804'],
-        ans: 0, exp: 'La Révolution française a commencé en 1789 avec la prise de la Bastille.'
+        ans: 0,
+        exp: 'La Revolution francaise a commence en 1789 avec la prise de la Bastille.'
       }
     ];
 
-    // === ÉTAT ===
-    let state = {
+    // === NIVEAUX ===
+    const LEVELS = [
+      { id: 1, name: 'Debutant', xpNeeded: 500 },
+      { id: 2, name: 'Apprenti', xpNeeded: 1200 },
+      { id: 3, name: 'Intermediaire', xpNeeded: 2500 },
+      { id: 4, name: 'Avance', xpNeeded: 5000 },
+      { id: 5, name: 'Expert', xpNeeded: 10000 }
+    ];
+
+    // === ETAT DE L'APPLICATION ===
+    let appState = {
       profile: { name: '', class: '' },
       totalXp: 0,
       level: 1,
       streak: 0,
       lastActiveDate: null,
       dailyXp: 0,
-      todayQuests: [],
-      xpQuests: 0,
+      quests: [],
+      todos: [],
       completedQuizIds: [],
-      todos: []
+      neo4j: { uri: '', user: '', pass: '' },
+      quiz: null,
+      quizAnswered: false
     };
 
-    const LEVELS = [
-      { id: 1, name: 'Débutant', xpNeeded: 500 },
-      { id: 2, name: 'Apprenti', xpNeeded: 1200 },
-      { id: 3, name: 'Intermédiaire', xpNeeded: 2500 },
-      { id: 4, name: 'Avancé', xpNeeded: 5000 },
-      { id: 5, name: 'Expert', xpNeeded: 10000 }
-    ];
-
-    const DAILY_QUESTS = [
-      { id: 'q1', text: 'Compléter 1 quiz', xp: 50, type: 'quiz', done: false },
-      { id: 'q2', text: 'Ajouter 1 tâche To-Do', xp: 30, type: 'todo', done: false },
-      { id: 'q3', text: 'Consulter tes niveaux', xp: 20, type: 'levels', done: false },
-      { id: 'q4', text: 'Demander à l\'IA coach', xp: 40, type: 'ai', done: false }
-    ];
-
     // === UTILITAIRES ===
+    function getTodayDate() {
+      return new Date().toISOString().split('T')[0];
+    }
+
+    function getDailySeed() {
+      var today = new Date();
+      return parseInt(today.getFullYear() + '' + (today.getMonth()+1) + '' + today.getDate());
+    }
+
     function seededRandom(seed) {
-      let x = seed;
-      x = Math.sin(x++) * 10000;
+      var x = Math.sin(seed++) * 10000;
       return x - Math.floor(x);
     }
 
     function seededShuffle(arr, seed) {
-      const result = [...arr];
-      for (let i = result.length - 1; i > 0; i--) {
-        seed = seededRandom(seed) * 1000;
-        const j = Math.floor(seededRandom(seed) * (i + 1));
-        [result[i], result[j]] = [result[j], result[i]];
+      var result = arr.slice();
+      for (var i = result.length - 1; i > 0; i--) {
+        seed = Math.floor(seededRandom(seed) * 1000);
+        var j = Math.floor(seededRandom(seed) * (i + 1));
+        var tmp = result[i]; result[i] = result[j]; result[j] = tmp;
       }
       return result;
     }
 
-    function getDailySeed() {
-      const today = new Date();
-      const dateStr = today.getFullYear() + '' + (today.getMonth()+1) + '' + today.getDate();
-      return parseInt(dateStr);
+    function showToast(msg) {
+      var t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(function() { t.classList.remove('show'); }, 2000);
     }
 
-    function getTodayDate() {
-      return new Date().toISOString().split('T')[0];
-    }
-    
-// vaj ESSENTIELLESDEETAT
-let state = {
-    currentScreen: 'home',
-    quiz: null,
-    quizAnswer: null,
-    neo4j: { uri: '', user: '', pass: '' }
-};
-
-function showScreen(screenName) {
-    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-    const activeNav = document.querySelector(`.nav-item[data-screen='${screenName}']`);
-    if (activeNav) activeNav.classList.add('active');
-    document.querySelectorAll('.screen').forEach(el => el.style.display = 'none');
-    const target = document.getElementById(screenName);
-    if (target) target.style.display = 'block';
-    state.currentScreen = screenName;
-    if (screenName === 'home') renderHome();
-}
-function renderHome() {
-    const p = data.profile;
-    const el = document.getElementById('txpVal');
-    if (el) el.textContent = p.txp || 0;
-    const el2 = document.getElementById('streakVal');
-    if (el2) el2.textContent = p.streak || 0;
-}
-function loadSavedData() {
-    const saved = localStorage.getItem('questup_profile');
-    if (saved) {
-        const parsed = JSON.parse(saved);
-        Object.assign(data.profile, parsed);
-    }
-}
-function addTodo() {
-    const inp = document.getElementById('todoInput');
-    if (!inp) return;
-    const text = inp.value.trim();
-    if (!text) return;
-    const id = 't' + Date.now();
-    if (!data.profile.todos) data.profile.todos = [];
-    data.profile.todos.push({ id, text, done: false });
-    inp.value = '';
-    saveProfile();
-}
-function saveProfile() {
-    localStorage.setItem('questup_profile', JSON.stringify(data.profile));
-}
-function testNeo4jConnection() {
-    const uri = document.getElementById('neo4jUri').value.trim();
-    const user = document.getElementById('neo4jUser').value.trim();
-    const pass = document.getElementById('neo4jPass').value.trim();
-    const status = document.getElementById('neo4jStatus');
-    if (!uri || !user || !pass) { status.textContent = 'Remplis tous les champs'; status.style.display = 'block'; return; }
-    state.neo4j = { uri, user, pass };
-    status.textContent = 'Connexion AU04j configuree';
-    status.style.color = '#00c853';
-    status.style.display = 'block';
-    localStorage.setItem('questup_neo4j', JSON.stringify(state.neo4j));
-}
-function loadFromNeo4j() {
-    const loaded = localStorage.getItem('questup_profile');
-    if (!loaded) return;
-    const parsed = JSON.parse(loaded);
-    Object.assign(data.profile, parsed);
-    saveProfile();
-}
-function exportData() {
-    const json = JSON.stringify(data.profile);
-    const blob = new Blob([json], { type: 'application/json' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'questup_export.json';
-    a.click();
-}
-function importData(evt) {
-    const file = evt.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = e => {
-        try {
-            const parsed = JSON.parse(e.target.result);
-            Object.assign(data.profile, parsed);
-            saveProfile();
-            alert('Donnees importees avec succes');
-        } catch (err) { alert('Erreur de fichier'); }
-    };
-    reader.readAsText(file);
-}
-function askInit() {
-    const msg = document.getElementById('initInput').value.trim();
-    if (!msg) return;
-    const box = document.getElementById('coachBox');
-    if (!box) return;
-    const div = document.createElement('div');
-    div.className = 'msg';
-    div.textContent = 'Coach: Salut! Je peux taider en maths, francais, histoire ou physique. Pose-moi ta question.';
-    box.prepend(div);
-}
-function startQuiz(bankId) {
-    const bank = BANKS.find(b => b.id === bankId);
-    if (!bank) return;
-    const seed = getDailySeed() * 7 + bank.id.charCodeAt(0);
-    const shuffled = seededShuffle(bank.qs, seed).slice(0, 5);
-    state.quiz = { bank, qs: shuffled, i: 0, score: 0 };
-    showScreen('quiz');
-    renderQuizQuestion();
-}
-function renderQuizQuestion() {
-    const q = state.quiz.qs[state.quiz.i];
-    const titleEl = document.getElementById('quizTitle');
-    const optsEl = document.getElementById('quizOptions');
-    if (titleEl) titleEl.textContent = q.qt;
-    if (optsEl) {
-        optsEl.innerHTML = '';
-        q.opts.forEach((opt, idx) => {
-            const btn = document.createElement('button');
-            btn.className = 'btn btn-primary btn-q';
-            btn.textContent = opt;
-            btn.onclick = () => selectQuizAnswer(btn, idx === q.ansI);
-            optsEl.appendChild(btn);
-        });
-    }
-}
-function selectQuizAnswer(btn, correct) {
-    if (state.quizAnswer) return;
-    state.quizAnswer = correct;
-    btn.classList.add(correct ? 'btn-success' : 'btn-danger');
-    if (correct) {
-        state.quiz.score++;
-        data.profile.txp += 5;
-    } else {
-        data.profile.txp += 1;
-    }
-    saveProfile();
-    setTimeout(nextQuizQuestion, 1000);
-}
-function nextQuizQuestion() {
-    state.quizAnswer = null;
-    state.quiz.i++;
-    if (state.quiz.i >= state.quiz.qs.length) showQuizResult();
-    else renderQuizQuestion();
-}
-function showQuizResult() {
-    const score = state.quiz.score + '/' + state.quiz.qs.length;
-    alert('Quiz termine: tu as ' + score + '. XP gagnes: ' + (state.quiz.score * 5 + (state.quiz.qs.length - state.quiz.score)));
-    showScreen('home');
-}
-
-    // NAVIGATION — Setup click handlers on nav items
-    function setupNav() {
-        document.querySelectorAll('.nav-item').forEach(function(el) {
-              el.addEventListener('click', function() {
-                      const screen = this.getAttribute('data-screen');
-                      if (screen) showScreen(screen);
-                    });
-            });
+    function updateStreak() {
+      var today = getTodayDate();
+      if (appState.lastActiveDate !== today) {
+        var prev = appState.lastActiveDate;
+        appState.lastActiveDate = today;
+        if (prev) {
+          var prevDate = new Date(prev);
+          var todayDate = new Date(today);
+          var diff = Math.round((todayDate - prevDate) / 86400000);
+          if (diff === 1) {
+            appState.streak++;
+          } else {
+            appState.streak = 1;
+          }
+        } else {
+          appState.streak = 1;
+        }
       }
-    
+    }
+
+    function calcLevel() {
+      var xp = appState.totalXp;
+      for (var i = LEVELS.length - 1; i >= 0; i--) {
+        if (xp >= LEVELS[i].xpNeeded) {
+          return LEVELS[i].id;
+        }
+      }
+      return 1;
+    }
+
+    function calcDailyProgress() {
+      var current = appState.dailyXp % 500;
+      return current / 500;
+    }
+
+    function setProgressRing(progress) {
+      var circle = document.getElementById('progressCircle');
+      var circumference = 345.4;
+      var offset = circumference - (progress * circumference);
+      circle.style.strokeDashoffset = offset;
+    }
+
+    function initQuests() {
+      var today = getTodayDate();
+      var lastQuestDate = localStorage.getItem('questup_quest_date');
+      if (lastQuestDate !== today) {
+        appState.quests = [
+          { id: 'q1', text: 'Completter 1 quiz', xp: 50, done: false, type: 'quiz' },
+          { id: 'q2', text: 'Ajouter 1 tache To-Do', xp: 30, done: false, type: 'todo' },
+          { id: 'q3', text: 'Consulter tes niveaux', xp: 20, done: false, type: 'levels' },
+          { id: 'q4', text: 'Demander a l\'IA coach', xp: 40, done: false, type: 'ai' }
+        ];
+        appState.dailyXp = 0;
+        localStorage.setItem('questup_quest_date', today);
+      } else {
+        var saved = localStorage.getItem('questup_quests');
+        if (saved) {
+          appState.quests = JSON.parse(saved);
+        }
+      }
+    }
+
+    function addXP(amount, questId) {
+      appState.dailyXp += amount;
+      appState.totalXp += amount;
+      appState.level = calcLevel();
+      var el = document.getElementById(questId);
+      if (el) {
+        el.classList.add('done');
+        el.querySelector('.quest-checkbox').checked = true;
+      }
+      saveData();
+      renderHome();
+      showToast('+' + amount + ' XP !');
+    }
+
+    function checkQuest(type) {
+      for (var i = 0; i < appState.quests.length; i++) {
+        var q = appState.quests[i];
+        if (q.type === type && !q.done) {
+          q.done = true;
+          addXP(q.xp, q.id);
+          return;
+        }
+      }
+    }
+
+    function renderHome() {
+      document.getElementById('playerName').value = appState.profile.name || '';
+      document.getElementById('playerClass').value = appState.profile.class || '';
+      document.getElementById('levelDisplay').textContent = appState.level;
+      document.getElementById('streakDisplay').textContent = appState.streak;
+      document.getElementById('totalXpDisplay').textContent = appState.totalXp;
+      document.getElementById('todayXpDisplay').textContent = appState.dailyXp;
+      document.getElementById('dailyXp').textContent = appState.dailyXp;
+
+      setProgressRing(calcDailyProgress());
+
+      var doneCount = 0;
+      var questsHtml = '';
+      for (var i = 0; i < appState.quests.length; i++) {
+        var q = appState.quests[i];
+        if (q.done) doneCount++;
+        questsHtml += '<div class="quest-item' + (q.done ? ' done' : '') + '" id="' + q.id + '">';
+        questsHtml += '<input type="checkbox" class="quest-checkbox" ' + (q.done ? 'checked' : '') + ' onclick="toggleQuest(\'' + q.id + '\')">';
+        questsHtml += '<span class="quest-text">' + q.text + '</span>';
+        questsHtml += '<span class="quest-xp">+' + q.xp + ' XP</span>';
+        questsHtml += '</div>';
+      }
+      document.getElementById('questsList').innerHTML = questsHtml;
+      document.getElementById('questsCount').textContent = doneCount + '/4';
+
+      renderLevels();
+      renderQuiz();
+      renderTodos();
+    }
+
+    function toggleQuest(questId) {
+      for (var i = 0; i < appState.quests.length; i++) {
+        var q = appState.quests[i];
+        if (q.id === questId && !q.done) {
+          q.done = true;
+          addXP(q.xp, q.id);
+          return;
+        }
+      }
+    }
+
+    function renderLevels() {
+      var html = '';
+      for (var i = 0; i < LEVELS.length; i++) {
+        var lvl = LEVELS[i];
+        var isActive = lvl.id === appState.level;
+        var remaining = lvl.xpNeeded - appState.totalXp;
+        if (remaining < 0) remaining = 0;
+        html += '<div class="level-item' + (isActive ? ' active' : '') + '">';
+        html += '<div class="level-number">' + lvl.id + '</div>';
+        html += '<div class="level-info">';
+        html += '<div class="level-name">' + lvl.name + '</div>';
+        html += '<div class="level-xp-needed">';
+        if (isActive) {
+          html += remaining + ' XP restants pour le niveau ' + (lvl.id + 1);
+        } else if (lvl.id < appState.level) {
+          html += 'Niveau atteint !';
+        } else {
+          html += 'Reste a atteindre';
+        }
+        html += '</div>';
+        html += '</div>';
+        html += '</div>';
+      }
+      document.getElementById('levelsList').innerHTML = html;
+    }
+
+    function renderQuiz() {
+      var today = getTodayDate();
+      var lastQuiz = localStorage.getItem('questup_quiz_completed');
+      if (lastQuiz === today) {
+        document.getElementById('quizCard').style.display = 'none';
+        document.getElementById('quizEmpty').style.display = 'block';
+        return;
+      }
+
+      if (!appState.quiz) {
+        var seed = getDailySeed();
+        var shuffled = seededShuffle(QUESTION_BANK, seed);
+        appState.quiz = {
+          questions: shuffled,
+          index: 0,
+          score: 0,
+          total: shuffled.length
+        };
+      }
+
+      var qc = appState.quiz;
+      if (qc.index >= qc.total || qc.total === 0) {
+        document.getElementById('quizCard').style.display = 'none';
+        document.getElementById('quizEmpty').style.display = 'block';
+        return;
+      }
+
+      var q = qc.questions[qc.index];
+      var html = '<div class="quiz-card">';
+      html += '<div class="quiz-topic">' + q.theme + ' - Question ' + (qc.index + 1) + '/' + qc.total + '</div>';
+      html += '<div class="quiz-question">' + q.q + '</div>';
+      html += '<div class="quiz-options">';
+      for (var i = 0; i < q.opts.length; i++) {
+        html += '<div class="quiz-option" onclick="answerQuiz(' + i + ')">' + q.opts[i] + '</div>';
+      }
+      html += '</div>';
+      html += '<div id="quizFeedback" class="quiz-explanation" style="display:none;">';
+      html += '<div class="quiz-explanation-title">Explication</div>';
+      html += '<div id="quizExpText"></div>';
+      html += '</div>';
+      html += '<div class="quiz-card-footer" id="quizNext" style="display:none;">';
+      html += '<button class="btn btn-primary" onclick="nextQuizQuestion()">Question suivante</button>';
+      html += '</div>';
+      html += '</div>';
+
+      document.getElementById('quizCard').innerHTML = html;
+      document.getElementById('quizCard').style.display = 'block';
+      document.getElementById('quizEmpty').style.display = 'none';
+    }
+
+    function answerQuiz(answerIndex) {
+      if (appState.quizAnswered) return;
+      appState.quizAnswered = true;
+
+      var qc = appState.quiz;
+      var currentQ = qc.questions[qc.index];
+      var isCorrect = answerIndex === currentQ.ans;
+
+      var options = document.querySelectorAll('.quiz-option');
+      for (var i = 0; i < options.length; i++) {
+        options[i].classList.add(i === currentQ.ans ? 'correct' : 'wrong');
+      }
+      options[answerIndex].classList.add(isCorrect ? 'correct' : 'wrong');
+
+      if (isCorrect) {
+        qc.score++;
+        checkQuest('quiz');
+      }
+
+      document.getElementById('quizExpText').textContent = currentQ.exp;
+      document.getElementById('quizFeedback').style.display = 'block';
+      document.getElementById('quizNext').style.display = 'block';
+    }
+
+    function nextQuizQuestion() {
+      appState.quizAnswered = false;
+      appState.quiz.index++;
+
+      if (appState.quiz.index >= appState.quiz.total) {
+        var score = appState.quiz.score + '/' + appState.quiz.total;
+        localStorage.setItem('questup_quiz_completed', getTodayDate());
+        document.getElementById('quizCard').style.display = 'none';
+        document.getElementById('quizEmpty').style.display = 'block';
+        showToast('Quiz termine : ' + score);
+        if (appState.quiz.score > 0) {
+          appState.totalXp += appState.quiz.score * 10;
+          appState.level = calcLevel();
+          saveData();
+        }
+      } else {
+        renderQuiz();
+      }
+    }
+
+    function renderTodos() {
+      var html = '';
+      for (var i = 0; i < appState.todos.length; i++) {
+        var t = appState.todos[i];
+        html += '<div class="todo-item' + (t.done ? ' done' : '') + '">';
+        html += '<input type="checkbox" class="quest-checkbox" ' + (t.done ? 'checked' : '') + ' onclick="toggleTodo(' + i + ')">';
+        html += '<span>' + t.text + '</span>';
+        html += '<button class="todo-delete" onclick="deleteTodo(' + i + ')">&#10005;</button>';
+        html += '</div>';
+      }
+      document.getElementById('todoList').innerHTML = html;
+    }
+
+    function addTodo() {
+      var inp = document.getElementById('todoInput');
+      var text = inp.value.trim();
+      if (!text) return;
+      appState.todos.push({ text: text, done: false });
+      inp.value = '';
+      checkQuest('todo');
+      renderTodos();
+      saveData();
+    }
+
+    function toggleTodo(index) {
+      appState.todos[index].done = !appState.todos[index].done;
+      renderTodos();
+      saveData();
+    }
+
+    function deleteTodo(index) {
+      appState.todos.splice(index, 1);
+      renderTodos();
+      saveData();
+    }
+
+    function showScreen(screenName) {
+      document.querySelectorAll('.screen').forEach(function(el) {
+        el.classList.remove('active');
+      });
+      document.querySelectorAll('.nav-item').forEach(function(el) {
+        el.classList.remove('active');
+      });
+
+      var target = document.getElementById('screen-' + screenName);
+      var navItem = document.querySelector('.nav-item[data-screen="' + screenName + '"]');
+
+      if (target) {
+        target.classList.add('active');
+        if (screenName === 'home') renderHome();
+      }
+      if (navItem) navItem.classList.add('active');
+
+      if (screenName === 'levels') {
+        checkQuest('levels');
+      }
+    }
+
+    function sendAiMessage() {
+      var input = document.getElementById('aiInput');
+      var msg = input.value.trim();
+      if (!msg) return;
+
+      var messagesContainer = document.getElementById('aiMessages');
+      var userMsg = document.createElement('div');
+      userMsg.className = 'ai-message user';
+      userMsg.textContent = msg;
+      messagesContainer.appendChild(userMsg);
+
+      input.value = '';
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+      checkQuest('ai');
+
+      var coachResponses = [
+        'Bonne question ! Voici ce que je te conseille de revoir en priorite : les concepts fondamentaux.',
+        'Tu fais de bons progres ! Continue sur ta lancee.',
+        'Essayons un quiz sur ce sujet pour tester tes connaissances.',
+        'N\'oublie pas de planifier tes revisions sur ta To-Do list !',
+        'C\'est normal de trouver ca difficile au debut. Prends le temps de bien comprendre.'
+      ];
+
+      setTimeout(function() {
+        var coachMsg = document.createElement('div');
+        coachMsg.className = 'ai-message coach';
+        coachMsg.textContent = coachResponses[Math.floor(Math.random() * coachResponses.length)];
+        messagesContainer.appendChild(coachMsg);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }, 800);
+    }
+
+    function saveProfile() {
+      var name = document.getElementById('playerName').value.trim();
+      var classVal = document.getElementById('playerClass').value;
+      appState.profile.name = name;
+      appState.profile.class = classVal;
+      saveData();
+      showToast('Profil mis a jour !');
+    }
+
+    function resetAll() {
+      if (confirm('Attention : cette action effacera toute ta progression. Tu es sur ?')) {
+        localStorage.removeItem('questup_profile');
+        localStorage.removeItem('questup_quests');
+        localStorage.removeItem('questup_quest_date');
+        localStorage.removeItem('questup_quiz_completed');
+        appState = {
+          profile: { name: '', class: '' },
+          totalXp: 0,
+          level: 1,
+          streak: 0,
+          lastActiveDate: null,
+          dailyXp: 0,
+          quests: [],
+          todos: [],
+          completedQuizIds: [],
+          neo4j: { uri: '', user: '', pass: '' },
+          quiz: null,
+          quizAnswered: false
+        };
+        initQuests();
+        renderHome();
+        showToast('Progres reinitialise !');
+      }
+    }
+
+    function saveData() {
+      localStorage.setItem('questup_profile', JSON.stringify(appState.profile));
+      localStorage.setItem('questup_quests', JSON.stringify(appState.quests));
+      localStorage.setItem('questup_todos', JSON.stringify(appState.todos));
+      localStorage.setItem('questup_data', JSON.stringify({
+        totalXp: appState.totalXp,
+        level: appState.level,
+        streak: appState.streak,
+        lastActiveDate: appState.lastActiveDate,
+        dailyXp: appState.dailyXp,
+        completedQuizIds: appState.completedQuizIds,
+        neo4j: appState.neo4j
+      }));
+    }
+
+    function loadData() {
+      var savedProfile = localStorage.getItem('questup_profile');
+      var savedData = localStorage.getItem('questup_data');
+      var savedTodos = localStorage.getItem('questup_todos');
+
+      if (savedProfile) {
+        appState.profile = JSON.parse(savedProfile);
+      }
+      if (savedData) {
+        var data = JSON.parse(savedData);
+        appState.totalXp = data.totalXp || 0;
+        appState.level = data.level || 1;
+        appState.streak = data.streak || 0;
+        appState.lastActiveDate = data.lastActiveDate || null;
+        appState.dailyXp = data.dailyXp || 0;
+        appState.completedQuizIds = data.completedQuizIds || [];
+        appState.neo4j = data.neo4j || { uri: '', user: '', pass: '' };
+      }
+      if (savedTodos) {
+        appState.todos = JSON.parse(savedTodos);
+      }
+
+      appState.level = calcLevel();
+      updateStreak();
+      initQuests();
+    }
+
+    function testNeo4jConnection() {
+      var uri = document.getElementById('neo4jUri').value.trim();
+      var user = document.getElementById('neo4jUser').value.trim();
+      var pass = document.getElementById('neo4jPass').value.trim();
+      var statusEl = document.getElementById('neo4jStatus');
+
+      if (!uri || !user || !pass) {
+        statusEl.textContent = 'Remplis tous les champs';
+        statusEl.className = 'neo4j-status error';
+        statusEl.style.display = 'block';
+        return;
+      }
+
+      appState.neo4j = { uri: uri, user: user, pass: pass };
+      saveData();
+
+      statusEl.textContent = 'Connexion configuree avec succes !';
+      statusEl.className = 'neo4j-status connected';
+      statusEl.style.display = 'block';
+      showToast('Neo4j configure !');
+    }
+
+    function loadFromNeo4j() {
+      var statusEl = document.getElementById('neo4jStatus');
+      loadData();
+      statusEl.textContent = 'Donnees chargees depuis le stockage local';
+      statusEl.className = 'neo4j-status connected';
+      statusEl.style.display = 'block';
+      renderHome();
+    }
+
+    function exportData() {
+      var exportObj = {
+        profile: appState.profile,
+        totalXp: appState.totalXp,
+        level: appState.level,
+        streak: appState.streak,
+        dailyXp: appState.dailyXp,
+        quests: appState.quests,
+        todos: appState.todos,
+        completedQuizIds: appState.completedQuizIds,
+        date: new Date().toISOString()
+      };
+      var json = JSON.stringify(exportObj, null, 2);
+      var blob = new Blob([json], { type: 'application/json' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'questup_backup.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function importData(event) {
+      var file = event.target.files[0];
+      if (!file) return;
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          var imported = JSON.parse(e.target.result);
+          if (imported.profile) appState.profile = imported.profile;
+          if (imported.totalXp) appState.totalXp = imported.totalXp;
+          if (imported.level) appState.level = imported.level;
+          if (imported.streak) appState.streak = imported.streak;
+          if (imported.dailyXp) appState.dailyXp = imported.dailyXp;
+          if (imported.quests) appState.quests = imported.quests;
+          if (imported.todos) appState.todos = imported.todos;
+          appState.level = calcLevel();
+          saveData();
+          renderHome();
+          showToast('Import reussi !');
+        } catch (err) {
+          showToast('Erreur lors de l\'import');
+        }
+      };
+      reader.readAsText(file);
+      event.target.value = '';
+    }
+
+    function toggleTheme() {
+      var body = document.body;
+      var btn = document.getElementById('themeToggle');
+      if (body.classList.contains('dark')) {
+        body.classList.remove('dark');
+        body.classList.add('light');
+        btn.textContent = '&#127746;';
+        localStorage.setItem('questup_theme', 'light');
+      } else {
+        body.classList.remove('light');
+        body.classList.add('dark');
+        btn.textContent = '&#127769;';
+        localStorage.setItem('questup_theme', 'dark');
+      }
+    }
+
+    function initTheme() {
+      var savedTheme = localStorage.getItem('questup_theme');
+      var body = document.body;
+      var btn = document.getElementById('themeToggle');
+      if (savedTheme === 'light') {
+        body.classList.remove('dark');
+        body.classList.add('light');
+        btn.textContent = '&#127746;';
+      } else {
+        body.classList.add('dark');
+        btn.textContent = '&#127769;';
+      }
+    }
+
+    // Event listener pour le toggle theme
+    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+
     // INITIALIZATION
-function init() {
-    loadSavedData();
-    const neo = localStorage.getItem('questup_neo4j');
-    if (neo) state.neo4j = JSON.parse(neo);
-    renderHome();
-    showScreen('home');
-    setupNav();
-}
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-} else {
-    init();
-}
-</script>
+    function init() {
+      initTheme();
+      loadData();
+      initQuests();
+      renderHome();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  </script>
 </body>
 </html>
